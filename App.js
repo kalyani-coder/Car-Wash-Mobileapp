@@ -9,6 +9,7 @@ import Login from './Components/Login';
 import Otp from './Components/Otp';
 import Home from './Components/Home';
 import Appointment from './Components/Appointment';
+import Washing from './Components/Washing';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +17,7 @@ function App() {
   return (
 
     <View style={styles.container}>
-      <NavigationContainer theme={{ colors: { background: 'white'} }}
+      {/* <NavigationContainer theme={{ colors: { background: 'white'} }}
       fallback={<Text>Loading...</Text>}>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Set up your Account" component={Login} />
@@ -25,11 +26,13 @@ function App() {
           <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
       </NavigationContainer>
-      {/* <StatusBar style="auto" /> */}
+      <StatusBar style="auto" /> */}
+   
+   
+     {/* <Home></Home> */}
+     <Washing></Washing>
     </View>
-    // <View>
-    //   <Home></Home>
-    // </View>
+  
 
   );
 
@@ -39,7 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor: 'white',
-    // paddingTop: 50,
+    paddingTop: 50,
     // marginTop:100
   },
 });
