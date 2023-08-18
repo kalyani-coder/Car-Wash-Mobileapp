@@ -6,6 +6,7 @@ import {
     TextInput,
     TouchableOpacity,
     Button,
+    Linking
 
 } from 'react-native'
 import moment from 'moment';
@@ -74,6 +75,22 @@ class Upcoming extends React.Component {
             isButton6Pressed: buttonName === 'button6',
         });
     };
+   //for home
+   handleIconPress = () => {
+    this.props.navigation.navigate('Home'); // Navigate to the home screen
+};
+//for washing itself page
+handleIconPress1 = () => {
+    this.props.navigation.navigate('Washing'); // Navigate to the home screen
+};
+//for  setting
+openSettings = async () => {
+    try {
+        await Linking.openSettings();
+    } catch (error) {
+        console.error('Error opening settings:', error);
+    }
+};
     render() {
 
         //for time
@@ -196,27 +213,35 @@ class Upcoming extends React.Component {
                     <AntDesign name="plus" size={20} color="black" />
                     <Text>Add New Booking</Text>
                 </View>
-                <View style={styles.iconsContainer}>
-                    
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                        <Entypo name="home" size={30} style={styles.icon} />
-                    </TouchableOpacity>
+                <View style={styles.iconsContainer1}>
 
-                    <Entypo name="calendar" size={30} style={styles.icon} />
-                    <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon} />
-                    <Ionicons name="settings-sharp" size={30} style={styles.icon} />
+                    <View style={styles.text9}>
+                        <TouchableOpacity onPress={this.handleIconPress}>
+                            <Entypo name="home" size={30} style={styles.icon4} />
+                        </TouchableOpacity>
+                        <Text style={styles.text10}>Home</Text>
+                    </View>
 
+                    <View style={styles.text9}>
+                        <TouchableOpacity onPress={this.handleIconPress1}>
+                            <Entypo name="calendar" size={30} style={styles.icon4} />
+                        </TouchableOpacity>
+                        <Text style={styles.text10}>Booking</Text>
+                    </View>
+
+                    <View style={styles.text9}>
+                        <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon4} />
+                        <Text style={styles.text10}>Inbox</Text>
+                    </View>
+
+                    <View style={styles.text9}>
+                        <TouchableOpacity onPress={this.openSettings}>
+                            <Ionicons name="settings-sharp" size={30} style={styles.icon4} />
+                        </TouchableOpacity>
+
+                        <Text style={styles.text10}>Setting</Text>
+                    </View>
                 </View>
-                <View style={styles.text4}>
-                    <Text style={styles.text5}>Home</Text>
-                    <Text style={styles.text5}>Booking</Text>
-                    <Text style={styles.text5}>Inbox</Text>
-                    <Text style={styles.text5}>Setting</Text>
-                </View>
-
-
-
-
             </>
         );
     }
@@ -297,25 +322,20 @@ const styles = StyleSheet.create({
         marginVertical: 10
 
     },
-
-    iconsContainer: {
+    iconsContainer1: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginHorizontal: 55
-
+        marginHorizontal: 60,
+        marginVertical: 10
     },
-    icon: {
+    icon4: {
         marginHorizontal: 20,
     },
-    text4: {
-        flexDirection: 'row',
+    text9: {
         justifyContent: 'space-between',
-
         alignItems: 'center',
-        marginHorizontal: 75
-
     },
-    text5: {
+    text10: {
         fontSize: 10,
     }
 

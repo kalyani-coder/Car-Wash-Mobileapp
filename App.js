@@ -10,6 +10,7 @@ import Otp from './Components/Otp';
 import Home from './Components/Home';
 import Appointment from './Components/Appointment';
 import Washing from './Components/Washing';
+import Confirmation from './Components/Confirmation';
 
 const Stack = createStackNavigator();
 
@@ -24,13 +25,11 @@ function App() {
           <Stack.Screen name="Otp" component={Otp} />
           <Stack.Screen name="Appointment" component={Appointment} />
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Washing" component={Washing} />
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" /> */}
-   
-   
-     {/* <Home></Home> */}
-     <Washing></Washing>
+      <Confirmation/>
     </View>
   
 

@@ -7,6 +7,7 @@ import {
     TextInput,
     TouchableOpacity,
     Button,
+    Linking
 
 } from 'react-native'
 import moment from 'moment';
@@ -26,7 +27,7 @@ class Completed extends React.Component {
         super(props);
         this.state = {
             currentTime: new Date(), //for time
-            
+
             //for button 
             isButton1Pressed: false,
             isButton2Pressed: false,
@@ -55,15 +56,15 @@ class Completed extends React.Component {
         const formattedHours = hours % 12 || 12;  // Convert to 12-hour format
         return `${formattedHours}:${minutes < 10 ? '0' : ''}${minutes} ${ampm}`;
     };
-    
+
     //for date
     onDayPress = (day) => {
         this.setState({
-          selectedDate: day.dateString,
+            selectedDate: day.dateString,
         });
-      };
+    };
 
-      //for button
+    //for button
 
     handleButtonPress = (buttonName) => {
         this.setState({
@@ -74,6 +75,22 @@ class Completed extends React.Component {
             isButton5Pressed: buttonName === 'button5',
             isButton6Pressed: buttonName === 'button6',
         });
+    };
+    //for home
+    handleIconPress = () => {
+        this.props.navigation.navigate('Home'); // Navigate to the home screen
+    };
+    //for washing itself page
+    handleIconPress1 = () => {
+        this.props.navigation.navigate('Washing'); // Navigate to the home screen
+    };
+    //for  setting
+    openSettings = async () => {
+        try {
+            await Linking.openSettings();
+        } catch (error) {
+            console.error('Error opening settings:', error);
+        }
     };
     render() {
 
@@ -91,7 +108,7 @@ class Completed extends React.Component {
             <>
                 <Text>Tomorrow</Text>
                 <View style={styles.flex}>
-                    <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5',borderWidth:2,borderColor:'white' }}>
+                    <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
                         <View style={styles.wash}>
                             <TouchableOpacity style={styles.date}>
                                 <Text style={styles.datetext}>{formattedDate}</Text>
@@ -126,7 +143,7 @@ class Completed extends React.Component {
                         </View>
                     </View>
 
-                    <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5',borderWidth:2,borderColor:'white' }}>
+                    <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
                         <View style={styles.wash}>
                             <TouchableOpacity style={styles.date}>
                                 <Text style={styles.datetext}>{formattedDate}</Text>
@@ -160,7 +177,7 @@ class Completed extends React.Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={{ height: 180, width: 380,  backgroundColor: '#E5E5E5' ,borderWidth:2,borderColor:'white' }}>
+                    <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
                         <View style={styles.wash}>
                             <TouchableOpacity style={styles.date}>
                                 <Text style={styles.datetext}>{formattedDate}</Text>
@@ -198,19 +215,34 @@ class Completed extends React.Component {
                     <AntDesign name="plus" size={20} color="black" />
                     <Text>Add New Booking</Text>
                 </View>
-                <View style={styles.iconsContainer}>
-                    <Entypo name="home" size={30} style={styles.icon} />
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                        <Entypo name="calendar" size={30} style={styles.icon} />
-                    </TouchableOpacity>
-                    <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon} />
-                    <Ionicons name="settings-sharp" size={30} style={styles.icon} />
-                </View>
-                <View style={styles.text4}>
-                <Text style={styles.text5}>Home</Text>
-                <Text style={styles.text5}>Booking</Text>
-                <Text style={styles.text5}>Inbox</Text>
-                <Text style={styles.text5}>Setting</Text>
+                <View style={styles.iconsContainer1}>
+
+                    <View style={styles.text9}>
+                        <TouchableOpacity onPress={this.handleIconPress}>
+                            <Entypo name="home" size={30} style={styles.icon4} />
+                        </TouchableOpacity>
+                        <Text style={styles.text10}>Home</Text>
+                    </View>
+
+                    <View style={styles.text9}>
+                        <TouchableOpacity onPress={this.handleIconPress1}>
+                            <Entypo name="calendar" size={30} style={styles.icon4} />
+                        </TouchableOpacity>
+                        <Text style={styles.text10}>Booking</Text>
+                    </View>
+
+                    <View style={styles.text9}>
+                        <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon4} />
+                        <Text style={styles.text10}>Inbox</Text>
+                    </View>
+
+                    <View style={styles.text9}>
+                        <TouchableOpacity onPress={this.openSettings}>
+                            <Ionicons name="settings-sharp" size={30} style={styles.icon4} />
+                        </TouchableOpacity>
+
+                        <Text style={styles.text10}>Setting</Text>
+                    </View>
                 </View>
 
 
@@ -305,16 +337,32 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         margin: 8
     },
-    text4:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        
+    text4: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+
         alignItems: 'center',
         marginHorizontal: 75
 
     },
-    text5:{
-        fontSize:10,
+    text5: {
+        fontSize: 10,
+    },
+    iconsContainer1: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginHorizontal: 60,
+        marginVertical: 10
+    },
+    icon4: {
+        marginHorizontal: 20,
+    },
+    text9: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    text10: {
+        fontSize: 10,
     }
 
 
