@@ -63,7 +63,7 @@ class Home extends React.Component {
   };
   //for washing itself page
   handleIconPress1 = () => {
-    this.props.navigation.navigate("Washing"); // Navigate to the home screen
+    this.props.navigation.navigate("Washing"); // Navigate to the Washing screen
   };
   //for  setting
   openSettings = async () => {
@@ -73,30 +73,13 @@ class Home extends React.Component {
       console.error("Error opening settings:", error);
     }
   };
-  //for search bar
-  // state = {
-  //     searchText: '',
-  //     isSearching: false,
-  //   };
-
-  //   handleSearchPress = () => {
-  //     this.setState({ isSearching: true });
-  //   };
-
-  //   handleCancelPress = () => {
-  //     this.setState({ isSearching: false, searchText: '' });
-  //     this.props.onSearch(''); // Call the onSearch callback with an empty query
-  //   };
-
-  //   handleSearchSubmit = () => {
-  //     this.props.onSearch(this.state.searchText);
-  //   };
+  
 
   render() {
     //for time
     const formattedTime = this.formatTime(this.state.currentTime);
     const { selectedDate, showPicker } = this.state;
-    // const { searchText, isSearching } = this.state;
+    
     return (
       <>
         <View style={styles.container}>
@@ -122,27 +105,7 @@ class Home extends React.Component {
             />
           </View>
         </View>
-        {/* <View style={styles.container1}>
-        {isSearching ? (
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search..."
-            value={searchText}
-            onChangeText={(text) => this.setState({ searchText: text })}
-            onSubmitEditing={this.handleSearchSubmit}
-          />
-        ) : (
-          <TouchableOpacity onPress={this.handleSearchPress}>
-            <Icon name="search" size={30} color="blue" />
-          </TouchableOpacity>
-        )}
-
-        {isSearching && (
-          <TouchableOpacity onPress={this.handleCancelPress}>
-            <Icon name="times" size={30} color="red" />
-          </TouchableOpacity>
-        )}
-      </View> */}
+        
         <View style={styles.flex}>
           <View style={{ height: 110, width: 175, backgroundColor: "#D3D3D3" }}>
             <Text style={styles.text1}>Rainy Wash Offer</Text>
@@ -266,11 +229,11 @@ class Home extends React.Component {
               <EvilIcons name="clock" size={24} color="black" />
               <Text>{formattedTime}</Text>
             </View>
+
             <View style={styles.time}>
               <TouchableOpacity
                 onPress={() => this.setState({ showPicker: true })}
               >
-                {/* <Text>Select Date</Text> */}
                 <AntDesign name="calendar" size={24} color="black" />
               </TouchableOpacity>
               {showPicker && (

@@ -31,8 +31,10 @@ class Washing extends React.Component {
             isDateTimePickerVisible: false,
             selectedTimes: Array(3).fill(null), // Initialize an array to store selected times
             activePicker: null, // To track the active picker index
+           
         };
     }
+
 
     showDateTimePicker = (index) => {
         this.setState({ isDateTimePickerVisible: true, activePicker: index });
@@ -54,7 +56,7 @@ class Washing extends React.Component {
             });
         }
     };
-
+  
     //for date
     onDayPress = (day) => {
         this.setState({
