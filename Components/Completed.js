@@ -7,7 +7,8 @@ import {
     TextInput,
     TouchableOpacity,
     Button,
-    Linking
+    Linking,
+    ScrollView
 
 } from 'react-native'
 import moment from 'moment';
@@ -110,8 +111,12 @@ class Completed extends React.Component {
 
         return (
             <>
-                <Text>Tomorrow</Text>
+              
                 <View style={styles.flex}>
+                <ScrollView
+                        Vertical={true}
+                        showsVerticalScrollIndicator={false}
+                    >
                     <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
                         <View style={styles.wash}>
                             <TouchableOpacity style={styles.date}>
@@ -214,6 +219,40 @@ class Completed extends React.Component {
                             </TouchableOpacity>
                         </View>
                     </View>
+                    <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
+                        <View style={styles.wash}>
+                            <TouchableOpacity style={styles.date}>
+                                <Text style={styles.datetext}>{formattedDate}</Text>
+                            </TouchableOpacity>
+                            <Text>Meeting Title</Text>
+                            <TouchableOpacity style={styles.btn3}>
+                                <Text style={styles.btntext}>Pending</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.clock}>
+                            <EvilIcons name="clock" size={24} color="black" />
+                            <Text>{formattedTime}</Text>
+                        </View>
+                        <View style={styles.button}>
+                            <TouchableOpacity onPress={() => this.handleButtonPress('button5')}
+                                style={[
+                                    styles.btn1,
+                                    { backgroundColor: isButton5Pressed ? 'grey' : 'white' },
+                                ]}
+                                underlayColor="grey">
+                                <Text style={styles.buttontext}>Reschedule</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.handleButtonPress('button6')}
+                                style={[
+                                    styles.btn2,
+                                    { backgroundColor: isButton6Pressed ? 'grey' : 'white' },
+                                ]}
+                                underlayColor="grey">
+                                <Text style={styles.buttontext}>Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    </ScrollView>
                 </View >
                 <View style={styles.add}>
                     <AntDesign name="plus" size={20} color="black" />
@@ -259,7 +298,6 @@ class Completed extends React.Component {
     }
 }
 const styles = StyleSheet.create({
-
     flex: {
         flex: 1,
         justifyContent: 'space-between',
@@ -270,7 +308,7 @@ const styles = StyleSheet.create({
     add: {
         flexDirection: 'row',
         marginHorizontal: 120,
-        marginVertical: 10
+        
 
     },
     iconsContainer: {

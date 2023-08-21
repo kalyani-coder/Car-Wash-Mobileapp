@@ -4,6 +4,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Upcoming from './Upcoming';
 import Cancled from './Cancled';
 import Completed from './Completed';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 const Tab = createMaterialTopTabNavigator();
@@ -12,8 +13,8 @@ const Appointment = () => {
    
     <Tab.Navigator initialRouteName="Upcoming"
     tabBarOption={{
-      activeTintColor: 'white',   // Text color when active
-      inactiveTintColor: 'black', // Text color when inactive
+      activeTintColor: 'blue',   // Text color when active
+      inactiveTintColor: 'green', // Text color when inactive
       style: { backgroundColor: 'grey' }, // Background color of the tab bar
       indicatorStyle: { backgroundColor: 'darkgrey' },
       
@@ -24,6 +25,7 @@ const Appointment = () => {
       
       {/* Add more screens as needed */}
     </Tab.Navigator>
+    
    
   );
 };

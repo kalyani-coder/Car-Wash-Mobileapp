@@ -29,7 +29,6 @@ function App() {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Washing" component={Washing} />
           <Stack.Screen name="Confirmation" component={Confirmation} />
-
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />

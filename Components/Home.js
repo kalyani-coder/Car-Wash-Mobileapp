@@ -87,6 +87,7 @@ class Home extends React.Component {
 
     return (
       <>
+      
         <View style={styles.container}>
           <Text style={styles.text}>Hello</Text>
           <View style={styles.iconsContainer}>
@@ -110,185 +111,200 @@ class Home extends React.Component {
             />
           </View>
         </View>
+      
+        <ScrollView
+                        Vertical={true}
+                        showsVerticalScrollIndicator={false}
+                    >
+        
+          <View style={styles.Section}>
 
-        <View style={styles.flex}>
-          <View style={{ height: 110, width: 175, backgroundColor: "#D3D3D3" }}>
-            <Text style={styles.text1}>Rainy Wash Offer</Text>
-            <Text style={{ color: "blue", marginHorizontal: 20 }}>50% off</Text>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>Book Now</Text>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={{ height: 110, width: 175, backgroundColor: "#D3D3D3" }}
-          ></View>
-        </View>
-
-        <Text style={styles.text3}>Services</Text>
-
-        <View style={styles.icon1}>
-          <View
-            style={{
-              height: 50,
-              width: 160,
-              backgroundColor: "white",
-              borderColor: "black",
-              borderWidth: 1,
-            }}
-          >
-            <View style={styles.icon3}>
-              <MaterialIcons
-                name="local-car-wash"
-                size={40}
-                color="black"
-                backgroundColor="#a9a9a9"
-                margin={4}
-              />
-              <Text style={styles.wash}>Wash</Text>
-            </View>
-          </View>
-
-          <View
-            style={{
-              height: 50,
-              width: 160,
-              backgroundColor: "white",
-              borderColor: "black",
-              borderWidth: 1,
-            }}
-          >
-            <View style={styles.icon3}>
-              <MaterialCommunityIcons
-                name="card-account-details-outline"
-                size={40}
-                color="black"
-                backgroundColor="#a9a9a9"
-                margin={4}
-              />
-              <Text style={styles.wash}>Detailing</Text>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.icon2}>
-          <View
-            style={{
-              height: 50,
-              width: 160,
-              backgroundColor: "white",
-              borderColor: "black",
-              borderWidth: 1,
-            }}
-          >
-            <View style={styles.icon3}>
-              <MaterialIcons
-                name="cleaning-services"
-                size={40}
-                color="black"
-                backgroundColor="#a9a9a9"
-                margin={4}
-              />
-              <Text style={styles.wash}>Cleaning</Text>
-            </View>
-          </View>
-          <View
-            style={{
-              height: 50,
-              width: 160,
-              backgroundColor: "white",
-              borderColor: "black",
-              borderWidth: 1,
-            }}
-          >
-            <View style={styles.icon3}>
-              <Ionicons
-                name="car-sharp"
-                size={40}
-                color="black"
-                backgroundColor="#a9a9a9"
-                margin={4}
-              />
-              <Text style={styles.wash}>Polish</Text>
-            </View>
-          </View>
-        </View>
-        <Text style={styles.text4}>Upcoming Booking</Text>
-        <View
-          style={{
-            height: 100,
-            width: 350,
-            backgroundColor: "#D3D3D3",
-            marginHorizontal: 20,
-          }}
-        >
-          <View style={styles.booking}>
-            <Ionicons name="car-sharp" size={40} color="black" margin={4} />
-            <Text style={styles.carwash}>Car Wash:car 1</Text>
-            <TouchableOpacity style={styles.btn3}>
-              <Text style={styles.btntext}>Pending</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.clocktime}>
-            <View style={styles.clock}>
-              <EvilIcons name="clock" size={24} color="black" />
-              <Text>{formattedTime}</Text>
-            </View>
-
-            <View style={styles.time}>
-              <TouchableOpacity
-                onPress={() => this.setState({ showPicker: true })}
-              >
-                <AntDesign name="calendar" size={24} color="black" />
+            <View style={{ height: 110, width: 175, backgroundColor: "#D3D3D3" }}>
+              <Text style={styles.text1}>Rainy Wash Offer</Text>
+              <Text style={{ color: "blue", marginHorizontal: 20 }}>50% off</Text>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>Book Now</Text>
               </TouchableOpacity>
-              {showPicker && (
-                <DateTimePicker
-                  value={selectedDate}
-                  mode="date"
-                  display="default"
-                  onChange={this.handleDateChange}
+            </View>
+
+            <Image
+              style={styles.img}
+              source={{
+                uri: 'https://reactnative.dev/img/tiny_logo.png',
+              }}
+            />
+
+          </View>
+
+          <Text style={styles.text3}>Services</Text>
+
+          <View style={styles.icon1}>
+            <View
+              style={{
+                height: 50,
+                width: 160,
+                backgroundColor: "white",
+                borderColor: "black",
+                borderWidth: 1,
+              }}
+            >
+              <View style={styles.icon3}>
+                <MaterialIcons
+                  name="local-car-wash"
+                  size={40}
+                  color="black"
+                  backgroundColor="#a9a9a9"
+                  margin={4}
                 />
-              )}
-              {selectedDate && (
-                <Text> {selectedDate.toLocaleDateString()}</Text>
-              )}
+                <Text style={styles.wash}>Wash</Text>
+              </View>
+            </View>
+
+            <View
+              style={{
+                height: 50,
+                width: 160,
+                backgroundColor: "white",
+                borderColor: "black",
+                borderWidth: 1,
+              }}
+            >
+              <View style={styles.icon3}>
+                <MaterialCommunityIcons
+                  name="card-account-details-outline"
+                  size={40}
+                  color="black"
+                  backgroundColor="#a9a9a9"
+                  margin={4}
+                />
+                <Text style={styles.wash}>Detailing</Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={styles.promotion1}>
-          <Text style={styles.text5}>Promotions</Text>
 
-          <TouchableOpacity style={styles.text6}>
-            <Text>View all</Text>
-          </TouchableOpacity>
-        </View>
-        <ScrollView
-          horizontal={true}
-          style={styles.promotion2}
-          showsHorizontalScrollIndicator={false}
-        >
-          <Image source={require("./Images/car1.jpg")} style={styles.item} />
-          <Image source={require("./Images/car2.jpg")} style={styles.item} />
-          <Image source={require("./Images/car3.jpg")} style={styles.item} />
-          <Image source={require("./Images/car3.jpg")} style={styles.item} />
-        </ScrollView>
-        <View style={styles.topservice1}>
-          <Text style={styles.text7}>Top Services</Text>
+          <View style={styles.icon2}>
+            <View
+              style={{
+                height: 50,
+                width: 160,
+                backgroundColor: "white",
+                borderColor: "black",
+                borderWidth: 1,
+              }}
+            >
+              <View style={styles.icon3}>
+                <MaterialIcons
+                  name="cleaning-services"
+                  size={40}
+                  color="black"
+                  backgroundColor="#a9a9a9"
+                  margin={4}
+                />
+                <Text style={styles.wash}>Cleaning</Text>
+              </View>
+            </View>
+            <View
+              style={{
+                height: 50,
+                width: 160,
+                backgroundColor: "white",
+                borderColor: "black",
+                borderWidth: 1,
+              }}
+            >
+              <View style={styles.icon3}>
+                <Ionicons
+                  name="car-sharp"
+                  size={40}
+                  color="black"
+                  backgroundColor="#a9a9a9"
+                  margin={4}
+                />
+                <Text style={styles.wash}>Polish</Text>
+              </View>
+            </View>
+          </View>
+          <Text style={styles.text4}>Upcoming Booking</Text>
+          <View
+            style={{
+              height: 100,
+              width: 350,
+              backgroundColor: "#D3D3D3",
+              marginHorizontal: 20,
+            }}
+          >
+            <View style={styles.booking}>
+              <Ionicons name="car-sharp" size={40} color="black" margin={4} />
+              <Text style={styles.carwash}>Car Wash:car 1</Text>
+              <TouchableOpacity style={styles.btn3}>
+                <Text style={styles.btntext}>Pending</Text>
+              </TouchableOpacity>
+            </View>
 
-          <TouchableOpacity style={styles.text8}>
-            <Text>View all</Text>
-          </TouchableOpacity>
-        </View>
-        <ScrollView
-          horizontal={true}
-          style={styles.topservice2}
-          showsHorizontalScrollIndicator={false}
-        >
-          <Image source={require("./Images/car1.jpg")} style={styles.item1} />
-          <Image source={require("./Images/car2.jpg")} style={styles.item1} />
-          <Image source={require("./Images/car3.jpg")} style={styles.item1} />
-          <Image source={require("./Images/car1.jpg")} style={styles.item1} />
-        </ScrollView>
+            <View style={styles.clocktime}>
+              <View style={styles.clock}>
+                <EvilIcons name="clock" size={24} color="black" />
+                <Text>{formattedTime}</Text>
+              </View>
+
+              <View style={styles.time}>
+                <TouchableOpacity
+                  onPress={() => this.setState({ showPicker: true })}
+                >
+                  <AntDesign name="calendar" size={24} color="black" />
+                </TouchableOpacity>
+                {showPicker && (
+                  <DateTimePicker
+                    value={selectedDate}
+                    mode="date"
+                    display="default"
+                    onChange={this.handleDateChange}
+                  />
+                )}
+                {selectedDate && (
+                  <Text> {selectedDate.toLocaleDateString()}</Text>
+                )}
+              </View>
+            </View>
+          </View>
+          <View style={styles.promotion1}>
+            <Text style={styles.text5}>Promotions</Text>
+
+            <TouchableOpacity style={styles.text6}>
+              <Text>View all</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView
+            horizontal={true}
+            style={styles.promotion2}
+            showsHorizontalScrollIndicator={false}
+          >
+            <Image source={require("./Images/car1.jpg")} style={styles.item} />
+            <Image source={require("./Images/car2.jpg")} style={styles.item} />
+            <Image source={require("./Images/car3.jpg")} style={styles.item} />
+            <Image source={require("./Images/car3.jpg")} style={styles.item} />
+          </ScrollView>
+          <View style={styles.topservice1}>
+            <Text style={styles.text7}>Top Services</Text>
+
+            <TouchableOpacity style={styles.text8}>
+              <Text>View all</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView
+            horizontal={true}
+            style={styles.topservice2}
+            showsHorizontalScrollIndicator={false}
+          >
+            <Image source={require("./Images/car1.jpg")} style={styles.item1} />
+            <Image source={require("./Images/car2.jpg")} style={styles.item1} />
+            <Image source={require("./Images/car3.jpg")} style={styles.item1} />
+            <Image source={require("./Images/car1.jpg")} style={styles.item1} />
+          </ScrollView>
+          </ScrollView>
+          
+        
+       
         <View style={styles.iconsContainer1}>
           <View style={styles.text9}>
             <TouchableOpacity onPress={this.handleIconPressHome}>
@@ -328,6 +344,11 @@ class Home extends React.Component {
   }
 }
 const styles = StyleSheet.create({
+  flex:{
+    marginHorizontal:20,
+    marginVertical:10,
+
+  },
   text: {
     marginHorizontal: 20,
     fontWeight: "bold",
@@ -337,7 +358,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    // paddingTop: 35,
+    marginHorizontal:10,
+    paddingTop: 35,
   },
   iconsContainer: {
     flexDirection: "row",
@@ -346,7 +368,7 @@ const styles = StyleSheet.create({
   icon: {
     marginHorizontal: 15,
   },
-  flex: {
+  Section: {
     marginHorizontal: 20,
     marginVertical: 10,
     flexDirection: "row",
@@ -367,6 +389,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     marginVertical: 5,
+  },
+  img: {
+    height: 110,
+    width: 175,
+
   },
   text3: {
     marginHorizontal: 20,
