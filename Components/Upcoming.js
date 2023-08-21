@@ -76,13 +76,17 @@ class Upcoming extends React.Component {
         });
     };
    //for home
-   handleIconPress = () => {
+  handleIconPressHome = () => {
     this.props.navigation.navigate('Home'); // Navigate to the home screen
-};
-//for washing itself page
-handleIconPress1 = () => {
-    this.props.navigation.navigate('Washing'); // Navigate to the home screen
-};
+  };
+  //for washing itself page
+  handleIconPressBooking = () => {
+    this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
+  };
+  //inbox page
+  handleIconPressInbox = () => {
+    this.props.navigation.navigate('Confirmation'); // Navigate to the Confirmation page screen
+  };
 //for  setting
 openSettings = async () => {
     try {
@@ -216,21 +220,23 @@ openSettings = async () => {
                 <View style={styles.iconsContainer1}>
 
                     <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.handleIconPress}>
+                        <TouchableOpacity onPress={this.handleIconPressHome}>
                             <Entypo name="home" size={30} style={styles.icon4} />
                         </TouchableOpacity>
                         <Text style={styles.text10}>Home</Text>
                     </View>
 
                     <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.handleIconPress1}>
+                        <TouchableOpacity onPress={this.handleIconPressBooking}>
                             <Entypo name="calendar" size={30} style={styles.icon4} />
                         </TouchableOpacity>
                         <Text style={styles.text10}>Booking</Text>
                     </View>
 
                     <View style={styles.text9}>
+                    <TouchableOpacity onPress={this.handleIconPressInbox}>
                         <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon4} />
+                        </TouchableOpacity>
                         <Text style={styles.text10}>Inbox</Text>
                     </View>
 

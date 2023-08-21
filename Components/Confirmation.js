@@ -22,7 +22,7 @@ import { Icon } from "@expo/vector-icons";
 class Confirmation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       selectedDate: new Date(),
       showPicker: false,
       isDatePickerVisible: false,
@@ -32,23 +32,23 @@ class Confirmation extends React.Component {
   showDatePicker = () => {
     this.setState({ isDatePickerVisible: true });
   };
-  
+
   hideDatePicker = () => {
     this.setState({ isDatePickerVisible: false });
   };
-  
+
   handleDateConfirm = date => {
     this.setState({
       selectedTime: date,
     });
     this.hideDatePicker();
   };
-  
+
   formatTime = time => {
     if (!time) return '';
-    return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit',hour12:true,}).toUpperCase();
+    return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true, }).toUpperCase();
   };
-  
+
   //for date
   handleDateChange = (event, selectedDate) => {
     if (selectedDate !== undefined) {
@@ -60,6 +60,26 @@ class Confirmation extends React.Component {
       });
     }
   };
+  //for home
+  handleIconPressHome = () => {
+    this.props.navigation.navigate('Home'); // Navigate to the home screen
+  };
+  //for washing itself page
+  handleIconPressBooking = () => {
+    this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
+  };
+  //inbox page
+  handleIconPressInbox = () => {
+    this.props.navigation.navigate('Confirmation'); // Navigate to the Confirmation page screen
+  };
+  //for  setting
+  openSettings = async () => {
+    try {
+      await Linking.openSettings();
+    } catch (error) {
+      console.error('Error opening settings:', error);
+    }
+  };
 
 
   render() {
@@ -68,7 +88,7 @@ class Confirmation extends React.Component {
     return (
       <>
         <View style={styles.container}>
-          <Text style={styles.text}>Confirmation</Text>
+          {/* <Text style={styles.text}>Confirmation</Text> */}
           <View
             style={{
               height: 70,
@@ -98,7 +118,7 @@ class Confirmation extends React.Component {
               marginVertical: 10,
             }}
           >
-            <View style={{flexDirection:'row'}}>
+            <View style={{ flexDirection: 'row' }}>
               <Text>Date & Time</Text>
               <TouchableOpacity
                 onPress={() => this.setState({ showPicker: true })}
@@ -107,21 +127,21 @@ class Confirmation extends React.Component {
               </TouchableOpacity>
             </View>
             <View>
-      <TouchableOpacity onPress={this.showDatePicker}>
-      <EvilIcons name="clock" size={24} color="black" />
-      </TouchableOpacity>
-      {selectedTime && (
-        <Text>{(this.formatTime(selectedTime))||"8:30"}</Text>
-      )}
-      <DateTimePickerModal
-        isVisible={isDatePickerVisible}
-        mode="time"
-        onConfirm={this.handleDateConfirm}
-        onCancel={this.hideDatePicker}
-      />
-    </View>
-           
-             <View>
+              <TouchableOpacity onPress={this.showDatePicker}>
+                <EvilIcons name="clock" size={24} color="black" />
+              </TouchableOpacity>
+              {selectedTime && (
+                <Text>{(this.formatTime(selectedTime)) || "8:30"}</Text>
+              )}
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="time"
+                onConfirm={this.handleDateConfirm}
+                onCancel={this.hideDatePicker}
+              />
+            </View>
+
+            <View>
               {/* <TouchableOpacity
                 onPress={() => this.setState({ showPicker: true })}
               >
@@ -190,25 +210,27 @@ class Confirmation extends React.Component {
           </TouchableOpacity>
           <View style={styles.iconsContainer1}>
             <View style={styles.text9}>
-              <TouchableOpacity onPress={this.handleIconPress}>
+              <TouchableOpacity onPress={this.handleIconPressHome}>
                 <Entypo name="home" size={30} style={styles.icon4} />
               </TouchableOpacity>
               <Text style={styles.text10}>Home</Text>
             </View>
 
             <View style={styles.text9}>
-              <TouchableOpacity onPress={this.handleIconPress1}>
+              <TouchableOpacity onPress={this.handleIconPressBooking}>
                 <Entypo name="calendar" size={30} style={styles.icon4} />
               </TouchableOpacity>
               <Text style={styles.text10}>Booking</Text>
             </View>
 
             <View style={styles.text9}>
+            <TouchableOpacity onPress={this.handleIconPressInbox}>
               <MaterialIcons
                 name="forward-to-inbox"
                 size={30}
                 style={styles.icon4}
               />
+              </TouchableOpacity>
               <Text style={styles.text10}>Inbox</Text>
             </View>
 

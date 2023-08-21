@@ -31,7 +31,7 @@ class Washing extends React.Component {
             isDateTimePickerVisible: false,
             selectedTimes: Array(3).fill(null), // Initialize an array to store selected times
             activePicker: null, // To track the active picker index
-           
+
         };
     }
 
@@ -56,7 +56,7 @@ class Washing extends React.Component {
             });
         }
     };
-  
+
     //for date
     onDayPress = (day) => {
         this.setState({
@@ -69,7 +69,7 @@ class Washing extends React.Component {
         const mapUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
         Linking.openURL(mapUrl);
     };
-    
+
     //for stars
     state = {
         selectedStars: 0,
@@ -78,12 +78,16 @@ class Washing extends React.Component {
         this.setState({ selectedStars: rating });
     };
     //for home
-    handleIconPress = () => {
+    handleIconPressHome = () => {
         this.props.navigation.navigate('Home'); // Navigate to the home screen
     };
     //for washing itself page
-    handleIconPress1 = () => {
-        this.props.navigation.navigate('Washing'); // Navigate to the home screen
+    handleIconPressBooking = () => {
+        this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
+    };
+    //inbox page
+    handleIconPressInbox = () => {
+        this.props.navigation.navigate('Confirmation'); // Navigate to the Confirmation page screen
     };
     //for  setting
     openSettings = async () => {
@@ -187,14 +191,14 @@ class Washing extends React.Component {
                 </ScrollView>
 
                 <Text style={{ fontWeight: 'bold', marginHorizontal: 20, fontSize: 15, marginVertical: 10 }}>Glossgenic</Text>
-          <View style={{ height: 50, width: 380, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
-                <View style={styles.gloss}>
-                    <TouchableOpacity onPress={this.openMapLink}>
-                        <FontAwesome name="map-marker" size={35} color="black" />
-                    </TouchableOpacity>
-                    <Text style={{ fontSize: 15}}>Amanora Park Town 1284 ABC Address</Text>
-                    <MaterialCommunityIcons name="greater-than" size={17} />
-                </View>
+                <View style={{ height: 50, width: 380, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
+                    <View style={styles.gloss}>
+                        <TouchableOpacity onPress={this.openMapLink}>
+                            <FontAwesome name="map-marker" size={35} color="black" />
+                        </TouchableOpacity>
+                        <Text style={{ fontSize: 15 }}>Amanora Park Town 1284 ABC Address</Text>
+                        <MaterialCommunityIcons name="greater-than" size={17} />
+                    </View>
                 </View>
 
                 <Text style={{ fontWeight: 'bold', marginHorizontal: 20, fontSize: 15, marginVertical: 10 }}>Choose Date</Text>
@@ -260,21 +264,23 @@ class Washing extends React.Component {
                 <View style={styles.iconsContainer1}>
 
                     <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.handleIconPress}>
+                        <TouchableOpacity onPress={this.handleIconPressHome}>
                             <Entypo name="home" size={30} style={styles.icon4} />
                         </TouchableOpacity>
                         <Text style={styles.text10}>Home</Text>
                     </View>
 
                     <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.handleIconPress1}>
+                        <TouchableOpacity onPress={this.handleIconPressBooking}>
                             <Entypo name="calendar" size={30} style={styles.icon4} />
                         </TouchableOpacity>
                         <Text style={styles.text10}>Booking</Text>
                     </View>
 
                     <View style={styles.text9}>
+                    <TouchableOpacity onPress={this.handleIconPressInbox}>
                         <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon4} />
+                        </TouchableOpacity>
                         <Text style={styles.text10}>Inbox</Text>
                     </View>
 
@@ -337,7 +343,7 @@ const styles = StyleSheet.create({
         margin: 5,
     },
     gloss: {
-        paddingTop:10,
+        paddingTop: 10,
         marginHorizontal: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',

@@ -58,12 +58,16 @@ class Home extends React.Component {
     }
   };
   //for home
-  handleIconPress = () => {
-    this.props.navigation.navigate("Home"); // Navigate to the home screen
+  handleIconPressHome = () => {
+    this.props.navigation.navigate('Home'); // Navigate to the home screen
   };
   //for washing itself page
-  handleIconPress1 = () => {
-    this.props.navigation.navigate("Washing"); // Navigate to the Washing screen
+  handleIconPressBooking = () => {
+    this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
+  };
+  //inbox page
+  handleIconPressInbox = () => {
+    this.props.navigation.navigate('Confirmation'); // Navigate to the Confirmation page screen
   };
   //for  setting
   openSettings = async () => {
@@ -73,13 +77,14 @@ class Home extends React.Component {
       console.error("Error opening settings:", error);
     }
   };
-  
+
 
   render() {
     //for time
     const formattedTime = this.formatTime(this.state.currentTime);
     const { selectedDate, showPicker } = this.state;
-    
+    const { navigation } = this.props;
+
     return (
       <>
         <View style={styles.container}>
@@ -105,7 +110,7 @@ class Home extends React.Component {
             />
           </View>
         </View>
-        
+
         <View style={styles.flex}>
           <View style={{ height: 110, width: 175, backgroundColor: "#D3D3D3" }}>
             <Text style={styles.text1}>Rainy Wash Offer</Text>
@@ -286,25 +291,27 @@ class Home extends React.Component {
         </ScrollView>
         <View style={styles.iconsContainer1}>
           <View style={styles.text9}>
-            <TouchableOpacity onPress={this.handleIconPress}>
+            <TouchableOpacity onPress={this.handleIconPressHome}>
               <Entypo name="home" size={30} style={styles.icon4} />
             </TouchableOpacity>
             <Text style={styles.text10}>Home</Text>
           </View>
 
           <View style={styles.text9}>
-            <TouchableOpacity onPress={this.handleIconPress1}>
+            <TouchableOpacity onPress={this.handleIconPressBooking}>
               <Entypo name="calendar" size={30} style={styles.icon4} />
             </TouchableOpacity>
             <Text style={styles.text10}>Booking</Text>
           </View>
 
           <View style={styles.text9}>
-            <MaterialIcons
-              name="forward-to-inbox"
-              size={30}
-              style={styles.icon4}
-            />
+            <TouchableOpacity onPress={this.handleIconPressInbox}>
+              <MaterialIcons
+                name="forward-to-inbox"
+                size={30}
+                style={styles.icon4}
+              />
+            </TouchableOpacity>
             <Text style={styles.text10}>Inbox</Text>
           </View>
 
