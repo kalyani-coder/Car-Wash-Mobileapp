@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import { Calendar } from "react-native-calendars";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+
 
 import { Ionicons } from "@expo/vector-icons";
 import { Icon } from "@expo/vector-icons";
@@ -23,45 +25,59 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTime: new Date(),
+      // currentTime: new Date(),
       selectedDate: new Date(),
       showPicker: false,
+      selectedTime: new Date(),
+      isDatePickerVisible: false,
+
     };
   }
 
-  componentDidMount() {
-    this.interval = setInterval(() => {
-      this.setState({ currentTime: new Date() });
-    }, 60000); // Update every minute
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  formatTime = (date) => {
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const ampm = hours >= 12 ? "PM" : "AM";
-    const formattedHours = hours % 12 || 12; // Convert to 12-hour format
-    return `${formattedHours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
-  };
   //for date
   handleDateChange = (event, selectedDate) => {
     if (selectedDate !== undefined) {
       this.setState({
         selectedDate,
         showPicker: false,
-        searchText: "",
-        isSearching: false,
+
       });
     }
   };
+  //for time
+  showDatePicker = () => {
+    this.setState({ isDatePickerVisible: true });
+  };
+
+  hideDatePicker = () => {
+    this.setState({ isDatePickerVisible: false });
+  };
+
+  handleDateConfirm = date => {
+    this.setState({
+      selectedTime: date,
+    });
+    this.hideDatePicker();
+  };
+
+  formatTime = time => {
+    if (!time) return '';
+    return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true, }).toUpperCase();
+  };
+  //for notification 
+  handleIconPressNotification = () => {
+    this.props.navigation.navigate('Notification'); // Navigate to the Notification screen
+  };
+  //for Profile 
+  handleIconPressProfile = () => {
+    this.props.navigation.navigate('Profile'); // Navigate to the Profile screen
+  };
+
   //for home
   handleIconPressHome = () => {
     this.props.navigation.navigate('Home'); // Navigate to the home screen
   };
-  //for washing itself page
+  //for Booking 
   handleIconPressBooking = () => {
     this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
   };
@@ -83,270 +99,292 @@ class Home extends React.Component {
     //for time
     const formattedTime = this.formatTime(this.state.currentTime);
     const { selectedDate, showPicker } = this.state;
+    const { selectedTime, isDatePickerVisible } = this.state;
     const { navigation } = this.props;
 
     return (
       <>
-      
-        <View style={styles.container}>
-          <Text style={styles.text}>Hello</Text>
-          <View style={styles.iconsContainer}>
-            <Ionicons
-              name="search"
-              size={30}
-              color="black"
-              style={styles.icon}
-            />
-            <Ionicons
-              name="notifications-outline"
-              size={30}
-              color="black"
-              style={styles.icon}
-            />
-            <AntDesign
-              name="contacts"
-              size={30}
-              color="black"
-              style={styles.icon}
-            />
-          </View>
-        </View>
-      
-        <ScrollView
-                        Vertical={true}
-                        showsVerticalScrollIndicator={false}
-                    >
-        
-          <View style={styles.Section}>
+     
 
-            <View style={{ height: 110, width: 175, backgroundColor: "#D3D3D3" }}>
-              <Text style={styles.text1}>Rainy Wash Offer</Text>
-              <Text style={{ color: "blue", marginHorizontal: 20 }}>50% off</Text>
-              <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Book Now</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={styles.container1}>
 
-            <Image
-              style={styles.img}
-              source={{
-                uri: 'https://reactnative.dev/img/tiny_logo.png',
-              }}
-            />
-
-          </View>
-
-          <Text style={styles.text3}>Services</Text>
-
-          <View style={styles.icon1}>
-            <View
-              style={{
-                height: 50,
-                width: 160,
-                backgroundColor: "white",
-                borderColor: "black",
-                borderWidth: 1,
-              }}
-            >
-              <View style={styles.icon3}>
-                <MaterialIcons
-                  name="local-car-wash"
-                  size={40}
-                  color="black"
-                  backgroundColor="#a9a9a9"
-                  margin={4}
-                />
-                <Text style={styles.wash}>Wash</Text>
-              </View>
-            </View>
-
-            <View
-              style={{
-                height: 50,
-                width: 160,
-                backgroundColor: "white",
-                borderColor: "black",
-                borderWidth: 1,
-              }}
-            >
-              <View style={styles.icon3}>
-                <MaterialCommunityIcons
-                  name="card-account-details-outline"
-                  size={40}
-                  color="black"
-                  backgroundColor="#a9a9a9"
-                  margin={4}
-                />
-                <Text style={styles.wash}>Detailing</Text>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.icon2}>
-            <View
-              style={{
-                height: 50,
-                width: 160,
-                backgroundColor: "white",
-                borderColor: "black",
-                borderWidth: 1,
-              }}
-            >
-              <View style={styles.icon3}>
-                <MaterialIcons
-                  name="cleaning-services"
-                  size={40}
-                  color="black"
-                  backgroundColor="#a9a9a9"
-                  margin={4}
-                />
-                <Text style={styles.wash}>Cleaning</Text>
-              </View>
-            </View>
-            <View
-              style={{
-                height: 50,
-                width: 160,
-                backgroundColor: "white",
-                borderColor: "black",
-                borderWidth: 1,
-              }}
-            >
-              <View style={styles.icon3}>
-                <Ionicons
-                  name="car-sharp"
-                  size={40}
-                  color="black"
-                  backgroundColor="#a9a9a9"
-                  margin={4}
-                />
-                <Text style={styles.wash}>Polish</Text>
-              </View>
-            </View>
-          </View>
-          <Text style={styles.text4}>Upcoming Booking</Text>
-          <View
-            style={{
-              height: 100,
-              width: 350,
-              backgroundColor: "#D3D3D3",
-              marginHorizontal: 20,
-            }}
-          >
-            <View style={styles.booking}>
-              <Ionicons name="car-sharp" size={40} color="black" margin={4} />
-              <Text style={styles.carwash}>Car Wash:car 1</Text>
-              <TouchableOpacity style={styles.btn3}>
-                <Text style={styles.btntext}>Pending</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.clocktime}>
-              <View style={styles.clock}>
-                <EvilIcons name="clock" size={24} color="black" />
-                <Text>{formattedTime}</Text>
-              </View>
-
-              <View style={styles.time}>
-                <TouchableOpacity
-                  onPress={() => this.setState({ showPicker: true })}
-                >
-                  <AntDesign name="calendar" size={24} color="black" />
-                </TouchableOpacity>
-                {showPicker && (
-                  <DateTimePicker
-                    value={selectedDate}
-                    mode="date"
-                    display="default"
-                    onChange={this.handleDateChange}
-                  />
-                )}
-                {selectedDate && (
-                  <Text> {selectedDate.toLocaleDateString()}</Text>
-                )}
-              </View>
-            </View>
-          </View>
-          <View style={styles.promotion1}>
-            <Text style={styles.text5}>Promotions</Text>
-
-            <TouchableOpacity style={styles.text6}>
-              <Text>View all</Text>
-            </TouchableOpacity>
-          </View>
-          <ScrollView
-            horizontal={true}
-            style={styles.promotion2}
-            showsHorizontalScrollIndicator={false}
-          >
-            <Image source={require("./Images/car1.jpg")} style={styles.item} />
-            <Image source={require("./Images/car2.jpg")} style={styles.item} />
-            <Image source={require("./Images/car3.jpg")} style={styles.item} />
-            <Image source={require("./Images/car3.jpg")} style={styles.item} />
-          </ScrollView>
-          <View style={styles.topservice1}>
-            <Text style={styles.text7}>Top Services</Text>
-
-            <TouchableOpacity style={styles.text8}>
-              <Text>View all</Text>
-            </TouchableOpacity>
-          </View>
-          <ScrollView
-            horizontal={true}
-            style={styles.topservice2}
-            showsHorizontalScrollIndicator={false}
-          >
-            <Image source={require("./Images/car1.jpg")} style={styles.item1} />
-            <Image source={require("./Images/car2.jpg")} style={styles.item1} />
-            <Image source={require("./Images/car3.jpg")} style={styles.item1} />
-            <Image source={require("./Images/car1.jpg")} style={styles.item1} />
-          </ScrollView>
-          </ScrollView>
-          
-        
-       
-        <View style={styles.iconsContainer1}>
-          <View style={styles.text9}>
-            <TouchableOpacity onPress={this.handleIconPressHome}>
-              <Entypo name="home" size={30} style={styles.icon4} />
-            </TouchableOpacity>
-            <Text style={styles.text10}>Home</Text>
-          </View>
-
-          <View style={styles.text9}>
-            <TouchableOpacity onPress={this.handleIconPressBooking}>
-              <Entypo name="calendar" size={30} style={styles.icon4} />
-            </TouchableOpacity>
-            <Text style={styles.text10}>Booking</Text>
-          </View>
-
-          <View style={styles.text9}>
-            <TouchableOpacity onPress={this.handleIconPressInbox}>
-              <MaterialIcons
-                name="forward-to-inbox"
+            <Text style={styles.text}>Hello</Text>
+            <View style={styles.iconsContainer}>
+              <Ionicons
+                name="search"
                 size={30}
-                style={styles.icon4}
+                color="black"
+                style={styles.icon}
               />
-            </TouchableOpacity>
-            <Text style={styles.text10}>Inbox</Text>
+               <TouchableOpacity onPress={this.handleIconPressNotification}>
+               <Ionicons
+                name="notifications-outline"
+                size={30}
+                color="black"
+                style={styles.icon}
+              />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.handleIconPressProfile}>
+              <AntDesign
+                name="contacts"
+                size={30}
+                color="black"
+                style={styles.icon}
+              />
+              </TouchableOpacity>
+            </View>
           </View>
 
-          <View style={styles.text9}>
-            <TouchableOpacity onPress={this.openSettings}>
-              <Ionicons name="settings-sharp" size={30} style={styles.icon4} />
-            </TouchableOpacity>
+          <ScrollView Vertical={true}
+            showsVerticalScrollIndicator={false}
+          >
 
-            <Text style={styles.text10}>Setting</Text>
+            <View style={styles.Section}>
+
+              <View style={{ height: 110, width: 175, backgroundColor: "#F2F3F4" }}>
+                <Text style={styles.text1}>Rainy Wash Offer</Text>
+                <Text style={{ color: "blue", marginHorizontal: 20 }}>50% off</Text>
+                <TouchableOpacity style={styles.button}>
+                  <Text style={styles.buttonText}>Book Now</Text>
+                </TouchableOpacity>
+              </View>
+
+              <Image
+                style={styles.img}
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png',
+                }}
+              />
+
+            </View>
+
+            <Text style={styles.text3}>Services</Text>
+
+            <View style={styles.icon1}>
+              <View
+                style={{
+                  height: 50,
+                  width: 160,
+                  backgroundColor: "white",
+                  borderColor: "black",
+                  borderWidth: 1,
+                }}
+              >
+                <View style={styles.icon3}>
+                  <MaterialIcons
+                    name="local-car-wash"
+                    size={40}
+                    color="black"
+                    backgroundColor="#F2F3F4"
+                    margin={4}
+                  />
+                  <Text style={styles.wash}>Wash</Text>
+                </View>
+              </View>
+
+              <View
+                style={{
+                  height: 50,
+                  width: 160,
+                  backgroundColor: "white",
+                  borderColor: "black",
+                  borderWidth: 1,
+                }}
+              >
+                <View style={styles.icon3}>
+                  <MaterialCommunityIcons
+                    name="card-account-details-outline"
+                    size={40}
+                    color="black"
+                    backgroundColor="#F2F3F4"
+                    margin={4}
+                  />
+                  <Text style={styles.wash}>Detailing</Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={styles.icon2}>
+              <View
+                style={{
+                  height: 50,
+                  width: 160,
+                  backgroundColor: "white",
+                  borderColor: "black",
+                  borderWidth: 1,
+                }}
+              >
+                <View style={styles.icon3}>
+                  <MaterialIcons
+                    name="cleaning-services"
+                    size={40}
+                    color="black"
+                    backgroundColor="#F2F3F4"
+                    margin={4}
+                  />
+                  <Text style={styles.wash}>Cleaning</Text>
+                </View>
+              </View>
+              <View
+                style={{
+                  height: 50,
+                  width: 160,
+                  backgroundColor: "white",
+                  borderColor: "black",
+                  borderWidth: 1,
+                }}
+              >
+                <View style={styles.icon3}>
+                  <Ionicons
+                    name="car-sharp"
+                    size={40}
+                    color="black"
+                    backgroundColor="#F2F3F4"
+                    margin={4}
+                  />
+                  <Text style={styles.wash}>Polish</Text>
+                </View>
+              </View>
+            </View>
+            <Text style={styles.text4}>Upcoming Booking</Text>
+            <View
+              style={{
+                height: 100,
+                width: 350,
+                backgroundColor: "#F2F3F4",
+                marginHorizontal: 20,
+              }}
+            >
+              <View style={styles.booking}>
+                <Ionicons name="car-sharp" size={40} color="black" margin={4} />
+                <Text style={styles.carwash}>Car Wash:car 1</Text>
+                <TouchableOpacity style={styles.btn3}>
+                  <Text style={styles.btntext}>Pending</Text>
+                </TouchableOpacity>
+              </View>
+
+              <View style={styles.clocktime}>
+                <View style={styles.clock}>
+                
+
+                  <TouchableOpacity onPress={this.showDatePicker}>
+                    <EvilIcons name="clock" size={22} color="black" />
+                  </TouchableOpacity>
+
+                  {selectedTime && (
+                    <Text>{(this.formatTime(selectedTime)) || "8:30"}</Text>
+                  )}
+                  <DateTimePickerModal
+                    isVisible={isDatePickerVisible}
+                    mode="time"
+                    onConfirm={this.handleDateConfirm}
+                    onCancel={this.hideDatePicker}
+                  />
+
+                </View>
+
+                <View style={styles.time}>
+                  <TouchableOpacity
+                    onPress={() => this.setState({ showPicker: true })}
+                  >
+                    <AntDesign name="calendar" size={24} color="black" />
+                  </TouchableOpacity>
+                  {showPicker && (
+                    <DateTimePicker
+                      value={selectedDate}
+                      mode="date"
+                      display="default"
+                      onChange={this.handleDateChange}
+                    />
+                  )}
+                  {selectedDate && (
+                    <Text> {selectedDate.toLocaleDateString()}</Text>
+                  )}
+                </View>
+              </View>
+            </View>
+            <View style={styles.promotion1}>
+              <Text style={styles.text5}>Promotions</Text>
+
+              <TouchableOpacity style={styles.text6}>
+                <Text>View all</Text>
+              </TouchableOpacity>
+            </View>
+            <ScrollView
+              horizontal={true}
+              style={styles.promotion2}
+              showsHorizontalScrollIndicator={false}
+            >
+              <Image source={require("./Images/car1.jpg")} style={styles.item} />
+              <Image source={require("./Images/car2.jpg")} style={styles.item} />
+              <Image source={require("./Images/car3.jpg")} style={styles.item} />
+              <Image source={require("./Images/car3.jpg")} style={styles.item} />
+            </ScrollView>
+            <View style={styles.topservice1}>
+              <Text style={styles.text7}>Top Services</Text>
+
+              <TouchableOpacity style={styles.text8}>
+                <Text>View all</Text>
+              </TouchableOpacity>
+            </View>
+            <ScrollView
+              horizontal={true}
+              style={styles.topservice2}
+              showsHorizontalScrollIndicator={false}
+            >
+              <Image source={require("./Images/car1.jpg")} style={styles.item1} />
+              <Image source={require("./Images/car2.jpg")} style={styles.item1} />
+              <Image source={require("./Images/car3.jpg")} style={styles.item1} />
+              <Image source={require("./Images/car1.jpg")} style={styles.item1} />
+            </ScrollView>
+          </ScrollView>
+
+
+
+          <View style={styles.iconsContainer1}>
+            <View style={styles.text9}>
+              <TouchableOpacity onPress={this.handleIconPressHome}>
+                <Entypo name="home" size={30} style={styles.icon4} />
+              </TouchableOpacity>
+              <Text style={styles.text10}>Home</Text>
+            </View>
+
+            <View style={styles.text9}>
+              <TouchableOpacity onPress={this.handleIconPressBooking}>
+                <Entypo name="calendar" size={30} style={styles.icon4} />
+              </TouchableOpacity>
+              <Text style={styles.text10}>Booking</Text>
+            </View>
+
+            <View style={styles.text9}>
+              <TouchableOpacity onPress={this.handleIconPressInbox}>
+                <MaterialIcons
+                  name="forward-to-inbox"
+                  size={30}
+                  style={styles.icon4}
+                />
+              </TouchableOpacity>
+              <Text style={styles.text10}>Inbox</Text>
+            </View>
+
+            <View style={styles.text9}>
+              <TouchableOpacity onPress={this.openSettings}>
+                <Ionicons name="settings-sharp" size={30} style={styles.icon4} />
+              </TouchableOpacity>
+
+              <Text style={styles.text10}>Setting</Text>
+            </View>
           </View>
-        </View>
+     
       </>
     );
   }
 }
 const styles = StyleSheet.create({
-  flex:{
-    marginHorizontal:20,
-    marginVertical:10,
+  
+  flex: {
+    marginHorizontal: 20,
+    marginVertical: 10,
 
   },
   text: {
@@ -354,12 +392,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
   },
-  container: {
+  container1: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginHorizontal:10,
-    paddingTop: 35,
+    marginHorizontal: 10,
+    // paddingTop: 35,
   },
   iconsContainer: {
     flexDirection: "row",
@@ -368,6 +406,7 @@ const styles = StyleSheet.create({
   icon: {
     marginHorizontal: 15,
   },
+  
   Section: {
     marginHorizontal: 20,
     marginVertical: 10,
@@ -492,10 +531,10 @@ const styles = StyleSheet.create({
   },
   iconsContainer1: {
     flexDirection: "row",
-    alignItems: "center",
-    marginHorizontal: 60,
-    marginVertical: 5,
+    justifyContent: "center",
+    marginVertical: 20,
   },
+
   icon4: {
     marginHorizontal: 20,
   },

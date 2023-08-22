@@ -107,29 +107,33 @@ class Washing extends React.Component {
         const { selectedStars } = this.state;
         return (
             <>
-                <View>
+                
 
                     {/* <Text style={styles.text}>Washing</Text> */}
+                    <ScrollView
+                        Vertical={true}
+                        showsVerticalScrollIndicator={false}
+                    >
 
-                    <View style={{ height: 120, width: 350, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
-                        <Text style={styles.text1}>Deep Wash</Text>
-                    </View>
-
-                    <View style={styles.about}>
-                        <Text style={styles.text2}>About</Text>
-                        <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Neque esse omnis ut iusto dicta soluta impedit fugiat.</Text>
-                    </View>
-
-                    <View style={styles.reviewtext}>
-                        <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Reviews</Text>
-                        <View style={styles.sees}>
-                            <Text>See all</Text>
-                            <MaterialCommunityIcons name="greater-than" size={17} />
+                        <View style={{ height: 120, width: 350, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
+                            <Text style={styles.text1}>Deep Wash</Text>
                         </View>
-                    </View>
 
-                </View>
+                        <View style={styles.about}>
+                            <Text style={styles.text2}>About</Text>
+                            <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Neque esse omnis ut iusto dicta soluta impedit fugiat.</Text>
+                        </View>
+
+                        <View style={styles.reviewtext}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Reviews</Text>
+                            <View style={styles.sees}>
+                                <Text>See all</Text>
+                                <MaterialCommunityIcons name="greater-than" size={17} />
+                            </View>
+                        </View>
+
+               
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <View style={{ height: 150, width: 300, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
                         <View style={styles.review}>
@@ -260,7 +264,10 @@ class Washing extends React.Component {
                         onCancel={this.hideDateTimePicker}
 
                     />
+
                 </View>
+            </ScrollView>
+            
                 <View style={styles.iconsContainer1}>
 
                     <View style={styles.text9}>
@@ -278,8 +285,8 @@ class Washing extends React.Component {
                     </View>
 
                     <View style={styles.text9}>
-                    <TouchableOpacity onPress={this.handleIconPressInbox}>
-                        <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon4} />
+                        <TouchableOpacity onPress={this.handleIconPressInbox}>
+                            <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon4} />
                         </TouchableOpacity>
                         <Text style={styles.text10}>Inbox</Text>
                     </View>

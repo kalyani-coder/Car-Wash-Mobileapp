@@ -6,21 +6,30 @@ import Cancled from './Cancled';
 import Completed from './Completed';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { Ionicons } from '@expo/vector-icons'; 
+
 
 const Tab = createMaterialTopTabNavigator();
 const Appointment = () => {
   return (
    
     <Tab.Navigator initialRouteName="Upcoming"
-    tabBarOption={{
-      activeTintColor: 'blue',   // Text color when active
-      inactiveTintColor: 'green', // Text color when inactive
-      style: { backgroundColor: 'grey' }, // Background color of the tab bar
-      indicatorStyle: { backgroundColor: 'darkgrey' },
+    screenOptions={{
+      // tabStyle: { width: 120 },
+      tabBarActiveTintColor:'black',
+      tabBarInactiveTintColor: 'gray',
       
-    }}>
-      <Tab.Screen name="Upcoming" component={Upcoming} />
-      <Tab.Screen name="Completed" component={Completed} />
+    }}
+    >
+      <Tab.Screen name="Upcoming" component={Upcoming} 
+          options={{
+            tabBarLabel: 'Upcoming',
+              
+          }}/>
+      <Tab.Screen name="Completed" component={Completed} options={{
+            tabBarLabel: 'Completed',
+             
+          }}/>
       <Tab.Screen name="Canceled" component={Cancled} />
       
       {/* Add more screens as needed */}

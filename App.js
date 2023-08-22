@@ -12,6 +12,9 @@ import Home from './Components/Home';
 import Appointment from './Components/Appointment';
 import Washing from './Components/Washing';
 import Confirmation from './Components/Confirmation';
+import Notification from './Components/Notification';
+import Confirm from './Components/Confirm';
+import Profile from './Components/Profile';
 
 
 const Stack = createStackNavigator();
@@ -20,8 +23,8 @@ function App() {
   return (
 
     <View style={styles.container}>
-      <NavigationContainer theme={{ colors: { background: 'white'} }}
-      fallback={<Text>Loading...</Text>}>
+      <NavigationContainer theme={{ colors: { background: 'white' } }}
+        fallback={<Text>Loading...</Text>}>
         <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Set up your Account" component={Login} />
           <Stack.Screen name="Otp" component={Otp} />
@@ -29,23 +32,20 @@ function App() {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Washing" component={Washing} />
           <Stack.Screen name="Confirmation" component={Confirmation} />
+          <Stack.Screen name="Notification" component={Notification} />
+          <Stack.Screen name="Confirm" component={Confirm} />
+          <Stack.Screen name="Profile" component={Profile} />
+
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
-     
     </View>
-  
-
   );
-
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'white',
-    // paddingTop: 50,
-    // marginTop:100
+    // paddingTop:50
   },
 });
 export default App;

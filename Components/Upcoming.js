@@ -259,7 +259,6 @@ class Upcoming extends React.Component {
                     <Text>Add New Booking</Text>
                 </View>
                 <View style={styles.iconsContainer1}>
-
                     <View style={styles.text9}>
                         <TouchableOpacity onPress={this.handleIconPressHome}>
                             <Entypo name="home" size={30} style={styles.icon4} />
@@ -300,7 +299,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'column',
         marginHorizontal: 5,
-        marginVertical: 5
+        marginVertical: 15
     },
     wash: {
         flexDirection: 'row',
@@ -366,8 +365,6 @@ const styles = StyleSheet.create({
     add: {
         flexDirection: 'row',
         marginHorizontal: 120,
-        
-
     },
     iconsContainer1: {
         flexDirection: 'row',

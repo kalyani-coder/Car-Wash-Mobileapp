@@ -289,6 +289,10 @@ class Cancled extends React.Component {
                     </View>
           </ScrollView>
         </View>
+        <View style={styles.add}>
+                    <AntDesign name="plus" size={20} color="black" />
+                    <Text>Add New Booking</Text>
+                </View>
         <View style={styles.iconsContainer1}>
           <View style={styles.text9}>
             <TouchableOpacity onPress={this.handleIconPressHome}>
@@ -416,11 +420,15 @@ const styles = StyleSheet.create({
   text5: {
     fontSize: 10,
   },
+  add: {
+    flexDirection: 'row',
+    marginHorizontal: 120,
+},
   iconsContainer1: {
     flexDirection: "row",
     alignItems: "center",
     marginHorizontal: 60,
-    marginVertical: 20,
+    marginVertical: 10,
   },
   icon4: {
     marginHorizontal: 20,
