@@ -9,11 +9,13 @@ import {
 
 } from 'react-native'
 
-
+//*********************** 
+//**********************
 // #f7db03 YELLOW
 //#006b51 DARK GREEN
 //#c4fcf7 FAINT GREEN
 // #659b9c MADIUM GREEN
+
 
 class Otp extends React.Component {
   constructor(props) {
