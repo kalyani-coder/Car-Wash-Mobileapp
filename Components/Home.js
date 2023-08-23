@@ -12,6 +12,13 @@ import { Calendar } from "react-native-calendars";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons/faMagnifyingGlass';
+import { faBell } from '@fortawesome/free-regular-svg-icons/faBell';
+import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
+import {faCar} from '@fortawesome/free-solid-svg-icons/faCar';
+
+
 
 import { Ionicons } from "@expo/vector-icons";
 import { Icon } from "@expo/vector-icons";
@@ -110,27 +117,21 @@ class Home extends React.Component {
 
             <Text style={styles.text}>Hello</Text>
             <View style={styles.iconsContainer}>
-              <Ionicons
-                name="search"
-                size={30}
+           
+              <FontAwesomeIcon icon={faMagnifyingGlass} size={25}
                 color="black"
-                style={styles.icon}
-              />
+                style={styles.icon}/>
                <TouchableOpacity onPress={this.handleIconPressNotification}>
-               <Ionicons
-                name="notifications-outline"
-                size={30}
+              
+              <FontAwesomeIcon icon={faBell} size={25}
                 color="black"
-                style={styles.icon}
-              />
+                style={styles.icon} />
               </TouchableOpacity>
               <TouchableOpacity onPress={this.handleIconPressProfile}>
-              <AntDesign
-                name="contacts"
-                size={30}
+              
+              <FontAwesomeIcon icon={faUser} size={25}
                 color="black"
-                style={styles.icon}
-              />
+                style={styles.icon}/>
               </TouchableOpacity>
             </View>
           </View>
@@ -171,13 +172,18 @@ class Home extends React.Component {
                 }}
               >
                 <View style={styles.icon3}>
-                  <MaterialIcons
+                  {/* <MaterialIcons
                     name="local-car-wash"
                     size={40}
                     color="black"
                     backgroundColor="#F2F3F4"
                     margin={4}
-                  />
+                  /> */}
+                <FontAwesomeIcon icon={faCar}   size={40}
+                    color="black"
+                    backgroundColor="#F2F3F4"
+                    margin={4}/>
+
                   <Text style={styles.wash}>Wash</Text>
                 </View>
               </View>

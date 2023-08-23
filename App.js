@@ -15,6 +15,7 @@ import Confirmation from './Components/Confirmation';
 import Notification from './Components/Notification';
 import Confirm from './Components/Confirm';
 import Profile from './Components/Profile';
+import Details from './Components/Details';
 
 
 const Stack = createStackNavigator();
@@ -39,13 +40,16 @@ function App() {
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
+  
     </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop:50
+    paddingTop:40,
+    
+
   },
 });
 export default App;

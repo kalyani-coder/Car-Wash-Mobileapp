@@ -10,9 +10,12 @@ import {
 } from "react-native";
 import { Calendar } from "react-native-calendars";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons/faDownload'
+// import { faDownload } from '@fortawesome/free-regular-svg-icons/faDownload'
 
 import { Ionicons } from "@expo/vector-icons";
-import { Icon } from "@expo/vector-icons";
+// import { Icon } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -64,7 +67,7 @@ class Notification extends React.Component {
                 > 
                 <View style={{flexDirection:'row',justifyContent:'space-between',margin:10}}>
                 <Text style={styles.text}>Notification Inbox</Text>
-                <AntDesign name="download" size={24} color="black" />
+                <FontAwesomeIcon icon={faDownload} size={25}/>
                 </View>
                 </View>
            
@@ -186,7 +189,7 @@ class Notification extends React.Component {
 }
 const styles=StyleSheet.create({
     container:{
-        // flex: 1,
+        flex: 1,
         position: 'relative',
     },
     text:{
@@ -197,7 +200,7 @@ const styles=StyleSheet.create({
         flexDirection: "row",
         top:650,
         left:50
-        
+     
       },
       icon4: {
         marginHorizontal: 20,
