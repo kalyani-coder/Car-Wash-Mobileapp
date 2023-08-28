@@ -179,10 +179,12 @@ class Home extends React.Component {
                     backgroundColor="#F2F3F4"
                     margin={4}
                   /> */}
+                  <TouchableOpacity  onPress={this.handleIconPressBooking}>
                 <FontAwesomeIcon icon={faCar}   size={40}
                     color="black"
                     backgroundColor="#F2F3F4"
                     margin={4}/>
+                    </TouchableOpacity>
 
                   <Text style={styles.wash}>Wash</Text>
                 </View>
@@ -198,6 +200,7 @@ class Home extends React.Component {
                 }}
               >
                 <View style={styles.icon3}>
+                <TouchableOpacity  onPress={this.handleIconPressBooking}>
                   <MaterialCommunityIcons
                     name="card-account-details-outline"
                     size={40}
@@ -205,6 +208,7 @@ class Home extends React.Component {
                     backgroundColor="#F2F3F4"
                     margin={4}
                   />
+                  </TouchableOpacity>
                   <Text style={styles.wash}>Detailing</Text>
                 </View>
               </View>
@@ -221,6 +225,7 @@ class Home extends React.Component {
                 }}
               >
                 <View style={styles.icon3}>
+                <TouchableOpacity  onPress={this.handleIconPressBooking}>
                   <MaterialIcons
                     name="cleaning-services"
                     size={40}
@@ -228,6 +233,7 @@ class Home extends React.Component {
                     backgroundColor="#F2F3F4"
                     margin={4}
                   />
+                  </TouchableOpacity>
                   <Text style={styles.wash}>Cleaning</Text>
                 </View>
               </View>
@@ -241,6 +247,7 @@ class Home extends React.Component {
                 }}
               >
                 <View style={styles.icon3}>
+                <TouchableOpacity  onPress={this.handleIconPressBooking}>
                   <Ionicons
                     name="car-sharp"
                     size={40}
@@ -248,6 +255,7 @@ class Home extends React.Component {
                     backgroundColor="#F2F3F4"
                     margin={4}
                   />
+                  </TouchableOpacity>
                   <Text style={styles.wash}>Polish</Text>
                 </View>
               </View>
@@ -321,10 +329,18 @@ class Home extends React.Component {
               style={styles.promotion2}
               showsHorizontalScrollIndicator={false}
             >
+              <TouchableOpacity onPress={this.handleIconPressInbox}>
               <Image source={require("./Images/car1.jpg")} style={styles.item} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.handleIconPressInbox}>
               <Image source={require("./Images/car2.jpg")} style={styles.item} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.handleIconPressInbox}>
               <Image source={require("./Images/car3.jpg")} style={styles.item} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.handleIconPressInbox}>
               <Image source={require("./Images/car3.jpg")} style={styles.item} />
+              </TouchableOpacity>
             </ScrollView>
             <View style={styles.topservice1}>
               <Text style={styles.text7}>Top Services</Text>
