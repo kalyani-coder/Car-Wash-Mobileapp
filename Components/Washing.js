@@ -201,7 +201,7 @@ class Washing extends React.Component {
                             <FontAwesome name="map-marker" size={35} color="black" />
                         </TouchableOpacity>
                         <Text style={{ fontSize: 15 }}>Amanora Park Town 1284 ABC Address</Text>
-                        <MaterialCommunityIcons name="greater-than" size={17} />
+                        <MaterialCommunityIcons name="greater-than" size={17} color="black"/>
                     </View>
                 </View>
 

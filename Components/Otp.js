@@ -47,7 +47,7 @@ class Otp extends React.Component {
     if (enteredOTP === generatedOTP.toString()) {
       // OTP verification successful, navigate to next screen
       // Replace 'NextScreen' with the actual name of the next screen
-      this.props.navigation.navigate('Appointment');
+      this.props.navigation.navigate('Signup');
     } else {
       // Show an error message or alert about incorrect OTP
       this.setState({ OtpError: 'Enter The Correct OTP' });

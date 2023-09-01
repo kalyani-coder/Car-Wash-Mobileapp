@@ -15,6 +15,7 @@ import Confirmation from './Components/Confirmation';
 import Notification from './Components/Notification';
 import Confirm from './Components/Confirm';
 import Profile from './Components/Profile';
+import Signup from './Components/Signup';
 import Details from './Components/Details';
 
 
@@ -36,9 +37,11 @@ function App() {
           <Stack.Screen name="Notification" component={Notification} />
           <Stack.Screen name="Confirm" component={Confirm} />
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Signup" component={Signup} />
 
         </Stack.Navigator>
       </NavigationContainer>
+      {/* <Signup></Signup> */}
       <StatusBar style="auto" />
   
     </View>
@@ -49,7 +52,6 @@ const styles = StyleSheet.create({
     flex: 1,
     // paddingTop:40,
     
-
   },
 });
 export default App;

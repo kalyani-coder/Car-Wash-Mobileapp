@@ -172,18 +172,15 @@ class Home extends React.Component {
                 }}
               >
                 <View style={styles.icon3}>
-                  {/* <MaterialIcons
-                    name="local-car-wash"
-                    size={40}
-                    color="black"
-                    backgroundColor="#F2F3F4"
-                    margin={4}
-                  /> */}
+                 
                   <TouchableOpacity  onPress={this.handleIconPressBooking}>
-                <FontAwesomeIcon icon={faCar}   size={40}
+                {/* <FontAwesomeIcon icon={faCar} size={35}
                     color="black"
                     backgroundColor="#F2F3F4"
-                    margin={4}/>
+                    margin={8}/> */}
+                    <MaterialIcons name="local-car-wash" size={40}  color="black"
+                    backgroundColor="#F2F3F4"
+                    margin={4} />
                     </TouchableOpacity>
 
                   <Text style={styles.wash}>Wash</Text>
