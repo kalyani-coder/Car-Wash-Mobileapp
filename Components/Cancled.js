@@ -289,6 +289,7 @@ class Cancled extends React.Component {
                     </View>
           </ScrollView>
         </View>
+        <View style={styles.footer}>
         <View style={styles.add}>
                     <AntDesign name="plus" size={20} color="black" />
                     <Text>Add New Booking</Text>
@@ -327,7 +328,7 @@ class Cancled extends React.Component {
             <Text style={styles.text10}>Setting</Text>
           </View>
         </View>
-        
+        </View>
       </>
     );
   }
@@ -420,26 +421,30 @@ const styles = StyleSheet.create({
   text5: {
     fontSize: 10,
   },
+    footer:{
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      padding: 5,
+      alignItems: 'center',
+  },
   add: {
-    flexDirection: 'row',
-    marginHorizontal: 120,
-},
+      flexDirection: 'row',
+      marginBottom:15,
+  },
   iconsContainer1: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginHorizontal: 60,
-    marginVertical: 10,
+      flexDirection: 'row', 
   },
   icon4: {
-    marginHorizontal: 20,
+      marginHorizontal: 20,
   },
   text9: {
-    justifyContent: "space-between",
-    alignItems: "center",
+      alignItems: 'center',
   },
   text10: {
-    fontSize: 10,
-  },
+      fontSize: 10,
+  }
 });
 
 export default Cancled;

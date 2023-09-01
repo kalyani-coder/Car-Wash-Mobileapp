@@ -359,7 +359,7 @@ class Home extends React.Component {
           </ScrollView>
 
 
-
+         <View style={styles.footer}>
           <View style={styles.iconsContainer1}>
             <View style={styles.text9}>
               <TouchableOpacity onPress={this.handleIconPressHome}>
@@ -394,7 +394,7 @@ class Home extends React.Component {
               <Text style={styles.text10}>Setting</Text>
             </View>
           </View>
-     
+          </View>
       </>
     );
   }
@@ -548,22 +548,44 @@ const styles = StyleSheet.create({
     width: 100,
     marginRight: 20,
   },
-  iconsContainer1: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginVertical: 20,
+  // iconsContainer1: {
+  //   flexDirection: "row",
+  //   justifyContent: "center",
+  //   marginVertical: 20,
+  // },
+
+  // icon4: {
+  //   marginHorizontal: 20,
+  // },
+  // text9: {
+  //   justifyContent: "space-between",
+  //   alignItems: "center",
+  // },
+  // text10: {
+  //   fontSize: 10,
+  // },
+  footer: {
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 5,
+    alignItems:'center',
+   
   },
 
+  iconsContainer1: {
+    flexDirection: 'row',
+  },
   icon4: {
     marginHorizontal: 20,
   },
   text9: {
-    justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: 'center',
   },
   text10: {
     fontSize: 10,
-  },
+  }
 });
 export default Home;
 // *******************************

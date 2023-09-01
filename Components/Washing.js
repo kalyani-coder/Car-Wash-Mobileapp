@@ -267,6 +267,7 @@ class Washing extends React.Component {
 
                 </View>
             </ScrollView>
+            <View style={styles.footer}>
             
                 <View style={styles.iconsContainer1}>
 
@@ -299,7 +300,7 @@ class Washing extends React.Component {
                         <Text style={styles.text10}>Setting</Text>
                     </View>
                 </View>
-
+                </View>
             </>
         );
 
@@ -381,22 +382,27 @@ const styles = StyleSheet.create({
         paddingTop: 8
     },
 
-
-    iconsContainer1: {
+    footer: {
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: 5,
+        alignItems:'center',
+       
+      },
+    
+      iconsContainer1: {
         flexDirection: 'row',
-        alignItems: 'center',
-        marginHorizontal: 60,
-        marginVertical: 20
-    },
-    icon4: {
+      },
+      icon4: {
         marginHorizontal: 20,
-    },
-    text9: {
-        justifyContent: 'space-between',
+      },
+      text9: {
         alignItems: 'center',
-    },
-    text10: {
+      },
+      text10: {
         fontSize: 10,
-    }
+      }
 })
 export default Washing;

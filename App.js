@@ -40,6 +40,8 @@ function App() {
           <Stack.Screen name="Signup" component={Signup} />
 
         </Stack.Navigator>
+      
+        
       </NavigationContainer>
       {/* <Signup></Signup> */}
       <StatusBar style="auto" />
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // paddingTop:40,
+    // position: 'relative',
     
   },
 });

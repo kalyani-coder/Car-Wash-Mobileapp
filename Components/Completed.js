@@ -78,17 +78,17 @@ class Completed extends React.Component {
         });
     };
     //for home
-  handleIconPressHome = () => {
-    this.props.navigation.navigate('Home'); // Navigate to the home screen
-  };
-  //for washing itself page
-  handleIconPressBooking = () => {
-    this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
-  };
-  //inbox page
-  handleIconPressInbox = () => {
-    this.props.navigation.navigate('Confirmation'); // Navigate to the Confirmation page screen
-  };
+    handleIconPressHome = () => {
+        this.props.navigation.navigate('Home'); // Navigate to the home screen
+    };
+    //for washing itself page
+    handleIconPressBooking = () => {
+        this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
+    };
+    //inbox page
+    handleIconPressInbox = () => {
+        this.props.navigation.navigate('Confirmation'); // Navigate to the Confirmation page screen
+    };
     //for  setting
     openSettings = async () => {
         try {
@@ -111,185 +111,186 @@ class Completed extends React.Component {
 
         return (
             <>
-              
+
                 <View style={styles.flex}>
-                <ScrollView
+                    <ScrollView
                         Vertical={true}
                         showsVerticalScrollIndicator={false}
                     >
-                    <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
-                        <View style={styles.wash}>
-                            <TouchableOpacity style={styles.date}>
-                                <Text style={styles.datetext}>{formattedDate}</Text>
-                            </TouchableOpacity>
-                            <Text>Wash</Text>
-                            <TouchableOpacity style={styles.btn3}>
-                                <Text style={styles.btntext}>Confirmed</Text>
-                            </TouchableOpacity>
+                        <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
+                            <View style={styles.wash}>
+                                <TouchableOpacity style={styles.date}>
+                                    <Text style={styles.datetext}>{formattedDate}</Text>
+                                </TouchableOpacity>
+                                <Text>Wash</Text>
+                                <TouchableOpacity style={styles.btn3}>
+                                    <Text style={styles.btntext}>Confirmed</Text>
+                                </TouchableOpacity>
 
-                        </View>
-                        <View style={styles.clock}>
-                            <EvilIcons name="clock" size={24} color="black" />
-                            <Text>{formattedTime}</Text>
-                        </View>
-                        <View style={styles.button}>
-                            <TouchableOpacity onPress={() => this.handleButtonPress('button1')}
-                                style={[
-                                    styles.btn1,
-                                    { backgroundColor: isButton1Pressed ? 'grey' : 'white' },
-                                ]}
-                                underlayColor="grey">
-                                <Text style={styles.buttontext}>Reschedule</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.handleButtonPress('button2')}
-                                style={[
-                                    styles.btn2,
-                                    { backgroundColor: isButton2Pressed ? 'grey' : 'white' },
-                                ]}
-                                underlayColor="grey">
-                                <Text style={styles.buttontext}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-
-                    <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
-                        <View style={styles.wash}>
-                            <TouchableOpacity style={styles.date}>
-                                <Text style={styles.datetext}>{formattedDate}</Text>
-                            </TouchableOpacity>
-                            <Text>Detailing</Text>
-                            <TouchableOpacity style={styles.btn3}>
-                                <Text style={styles.btntext}>Pending</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.clock}>
-                            <EvilIcons name="clock" size={24} color="black" />
-                            <Text>{formattedTime}</Text>
+                            </View>
+                            <View style={styles.clock}>
+                                <EvilIcons name="clock" size={24} color="black" />
+                                <Text>{formattedTime}</Text>
+                            </View>
+                            <View style={styles.button}>
+                                <TouchableOpacity onPress={() => this.handleButtonPress('button1')}
+                                    style={[
+                                        styles.btn1,
+                                        { backgroundColor: isButton1Pressed ? 'grey' : 'white' },
+                                    ]}
+                                    underlayColor="grey">
+                                    <Text style={styles.buttontext}>Reschedule</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.handleButtonPress('button2')}
+                                    style={[
+                                        styles.btn2,
+                                        { backgroundColor: isButton2Pressed ? 'grey' : 'white' },
+                                    ]}
+                                    underlayColor="grey">
+                                    <Text style={styles.buttontext}>Cancel</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
 
-                        <View style={styles.button}>
-                            <TouchableOpacity onPress={() => this.handleButtonPress('button3')}
-                                style={[
-                                    styles.btn1,
-                                    { backgroundColor: isButton3Pressed ? 'grey' : 'white' },
-                                ]}
-                                underlayColor="grey">
-                                <Text style={styles.buttontext}>Reschedule</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.handleButtonPress('button4')}
-                                style={[
-                                    styles.btn2,
-                                    { backgroundColor: isButton4Pressed ? 'grey' : 'white' },
-                                ]}
-                                underlayColor="grey">
-                                <Text style={styles.buttontext}>Cancel</Text>
-                            </TouchableOpacity>
+                        <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
+                            <View style={styles.wash}>
+                                <TouchableOpacity style={styles.date}>
+                                    <Text style={styles.datetext}>{formattedDate}</Text>
+                                </TouchableOpacity>
+                                <Text>Detailing</Text>
+                                <TouchableOpacity style={styles.btn3}>
+                                    <Text style={styles.btntext}>Pending</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.clock}>
+                                <EvilIcons name="clock" size={24} color="black" />
+                                <Text>{formattedTime}</Text>
+                            </View>
+
+                            <View style={styles.button}>
+                                <TouchableOpacity onPress={() => this.handleButtonPress('button3')}
+                                    style={[
+                                        styles.btn1,
+                                        { backgroundColor: isButton3Pressed ? 'grey' : 'white' },
+                                    ]}
+                                    underlayColor="grey">
+                                    <Text style={styles.buttontext}>Reschedule</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.handleButtonPress('button4')}
+                                    style={[
+                                        styles.btn2,
+                                        { backgroundColor: isButton4Pressed ? 'grey' : 'white' },
+                                    ]}
+                                    underlayColor="grey">
+                                    <Text style={styles.buttontext}>Cancel</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    </View>
-                    <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
-                        <View style={styles.wash}>
-                            <TouchableOpacity style={styles.date}>
-                                <Text style={styles.datetext}>{formattedDate}</Text>
-                            </TouchableOpacity>
-                            <Text>Meeting Title</Text>
-                            <TouchableOpacity style={styles.btn3}>
-                                <Text style={styles.btntext}>Pending</Text>
-                            </TouchableOpacity>
+                        <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
+                            <View style={styles.wash}>
+                                <TouchableOpacity style={styles.date}>
+                                    <Text style={styles.datetext}>{formattedDate}</Text>
+                                </TouchableOpacity>
+                                <Text>Meeting Title</Text>
+                                <TouchableOpacity style={styles.btn3}>
+                                    <Text style={styles.btntext}>Pending</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.clock}>
+                                <EvilIcons name="clock" size={24} color="black" />
+                                <Text>{formattedTime}</Text>
+                            </View>
+                            <View style={styles.button}>
+                                <TouchableOpacity onPress={() => this.handleButtonPress('button5')}
+                                    style={[
+                                        styles.btn1,
+                                        { backgroundColor: isButton5Pressed ? 'grey' : 'white' },
+                                    ]}
+                                    underlayColor="grey">
+                                    <Text style={styles.buttontext}>Reschedule</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.handleButtonPress('button6')}
+                                    style={[
+                                        styles.btn2,
+                                        { backgroundColor: isButton6Pressed ? 'grey' : 'white' },
+                                    ]}
+                                    underlayColor="grey">
+                                    <Text style={styles.buttontext}>Cancel</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                        <View style={styles.clock}>
-                            <EvilIcons name="clock" size={24} color="black" />
-                            <Text>{formattedTime}</Text>
+                        <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
+                            <View style={styles.wash}>
+                                <TouchableOpacity style={styles.date}>
+                                    <Text style={styles.datetext}>{formattedDate}</Text>
+                                </TouchableOpacity>
+                                <Text>Meeting Title</Text>
+                                <TouchableOpacity style={styles.btn3}>
+                                    <Text style={styles.btntext}>Pending</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.clock}>
+                                <EvilIcons name="clock" size={24} color="black" />
+                                <Text>{formattedTime}</Text>
+                            </View>
+                            <View style={styles.button}>
+                                <TouchableOpacity onPress={() => this.handleButtonPress('button5')}
+                                    style={[
+                                        styles.btn1,
+                                        { backgroundColor: isButton5Pressed ? 'grey' : 'white' },
+                                    ]}
+                                    underlayColor="grey">
+                                    <Text style={styles.buttontext}>Reschedule</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.handleButtonPress('button6')}
+                                    style={[
+                                        styles.btn2,
+                                        { backgroundColor: isButton6Pressed ? 'grey' : 'white' },
+                                    ]}
+                                    underlayColor="grey">
+                                    <Text style={styles.buttontext}>Cancel</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                        <View style={styles.button}>
-                            <TouchableOpacity onPress={() => this.handleButtonPress('button5')}
-                                style={[
-                                    styles.btn1,
-                                    { backgroundColor: isButton5Pressed ? 'grey' : 'white' },
-                                ]}
-                                underlayColor="grey">
-                                <Text style={styles.buttontext}>Reschedule</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.handleButtonPress('button6')}
-                                style={[
-                                    styles.btn2,
-                                    { backgroundColor: isButton6Pressed ? 'grey' : 'white' },
-                                ]}
-                                underlayColor="grey">
-                                <Text style={styles.buttontext}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View style={{ height: 180, width: 380, backgroundColor: '#E5E5E5', borderWidth: 2, borderColor: 'white' }}>
-                        <View style={styles.wash}>
-                            <TouchableOpacity style={styles.date}>
-                                <Text style={styles.datetext}>{formattedDate}</Text>
-                            </TouchableOpacity>
-                            <Text>Meeting Title</Text>
-                            <TouchableOpacity style={styles.btn3}>
-                                <Text style={styles.btntext}>Pending</Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={styles.clock}>
-                            <EvilIcons name="clock" size={24} color="black" />
-                            <Text>{formattedTime}</Text>
-                        </View>
-                        <View style={styles.button}>
-                            <TouchableOpacity onPress={() => this.handleButtonPress('button5')}
-                                style={[
-                                    styles.btn1,
-                                    { backgroundColor: isButton5Pressed ? 'grey' : 'white' },
-                                ]}
-                                underlayColor="grey">
-                                <Text style={styles.buttontext}>Reschedule</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.handleButtonPress('button6')}
-                                style={[
-                                    styles.btn2,
-                                    { backgroundColor: isButton6Pressed ? 'grey' : 'white' },
-                                ]}
-                                underlayColor="grey">
-                                <Text style={styles.buttontext}>Cancel</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
                     </ScrollView>
-                </View >
-                <View style={styles.add}>
-                    <AntDesign name="plus" size={20} color="black" />
-                    <Text>Add New Booking</Text>
                 </View>
-                <View style={styles.iconsContainer1}>
-
-                    <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.handleIconPressHome}>
-                            <Entypo name="home" size={30} style={styles.icon4} />
-                        </TouchableOpacity>
-                        <Text style={styles.text10}>Home</Text>
+                <View style={styles.footer}>
+                    <View style={styles.add}>
+                        <AntDesign name="plus" size={20} color="black" />
+                        <Text>Add New Booking</Text>
                     </View>
+                    <View style={styles.iconsContainer1}>
 
-                    <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.handleIconPressBooking}>
-                            <Entypo name="calendar" size={30} style={styles.icon4} />
-                        </TouchableOpacity>
-                        <Text style={styles.text10}>Booking</Text>
-                    </View>
+                        <View style={styles.text9}>
+                            <TouchableOpacity onPress={this.handleIconPressHome}>
+                                <Entypo name="home" size={30} style={styles.icon4} />
+                            </TouchableOpacity>
+                            <Text style={styles.text10}>Home</Text>
+                        </View>
 
-                    <View style={styles.text9}>
-                    <TouchableOpacity onPress={this.handleIconPressInbox}>
-                        <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon4} />
-                        </TouchableOpacity>
-                        <Text style={styles.text10}>Inbox</Text>
-                    </View>
+                        <View style={styles.text9}>
+                            <TouchableOpacity onPress={this.handleIconPressBooking}>
+                                <Entypo name="calendar" size={30} style={styles.icon4} />
+                            </TouchableOpacity>
+                            <Text style={styles.text10}>Booking</Text>
+                        </View>
 
-                    <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.openSettings}>
-                            <Ionicons name="settings-sharp" size={30} style={styles.icon4} />
-                        </TouchableOpacity>
+                        <View style={styles.text9}>
+                            <TouchableOpacity onPress={this.handleIconPressInbox}>
+                                <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon4} />
+                            </TouchableOpacity>
+                            <Text style={styles.text10}>Inbox</Text>
+                        </View>
 
-                        <Text style={styles.text10}>Setting</Text>
+                        <View style={styles.text9}>
+                            <TouchableOpacity onPress={this.openSettings}>
+                                <Ionicons name="settings-sharp" size={30} style={styles.icon4} />
+                            </TouchableOpacity>
+
+                            <Text style={styles.text10}>Setting</Text>
+                        </View>
                     </View>
                 </View>
-
 
 
 
@@ -305,18 +306,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         marginVertical: 15
     },
-    add: {
-        flexDirection: 'row',
-        marginHorizontal: 120,
-        
 
-    },
-    iconsContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginHorizontal: 55
-
-    },
+    // iconsContainer: {
+    //     flexDirection: 'row',
+    //     alignItems: 'center',
+    //     marginHorizontal: 55
+    // },
     icon: {
         marginHorizontal: 20,
     },
@@ -392,22 +387,31 @@ const styles = StyleSheet.create({
     text5: {
         fontSize: 10,
     },
+    footer: {
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: 5,
+        alignItems: 'center',
+    },
+    add: {
+        flexDirection: 'row',
+        marginBottom: 15,
+    },
     iconsContainer1: {
         flexDirection: 'row',
-        alignItems: 'center',
-        marginHorizontal: 60,
-        marginVertical: 10
     },
     icon4: {
         marginHorizontal: 20,
     },
     text9: {
-        justifyContent: 'space-between',
         alignItems: 'center',
     },
     text10: {
         fontSize: 10,
     }
+
 
 
 

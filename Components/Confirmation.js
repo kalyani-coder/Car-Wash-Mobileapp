@@ -245,6 +245,9 @@ class Confirmation extends React.Component {
           <TouchableOpacity style={styles.button} onPress={this.handleIconPressConfirm}>
             <Text style={styles.buttonText}>Confirm Booking</Text>
           </TouchableOpacity>
+           </View>
+
+           <View style={styles.footer}>
 
           <View style={styles.iconsContainer1}>
             <View style={styles.text9}>
@@ -284,7 +287,8 @@ class Confirmation extends React.Component {
               <Text style={styles.text10}>Setting</Text>
             </View>
           </View>
-        </View>
+          </View>
+       
       </>
     );
   }
@@ -347,20 +351,41 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 4,
   },
-  iconsContainer1: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginVertical: 20,
-  },
-  icon4: {
+  // iconsContainer1: {
+  //   flexDirection: "row",
+  //   justifyContent: "center",
+  //   marginVertical: 20,
+  // },
+  // icon4: {
+  //   marginHorizontal: 20,
+  // },
+  // text9: {
+  //   justifyContent: "space-between",
+  //   alignItems: "center",
+  // },
+  // text10: {
+  //   fontSize: 10,
+  // },
+  footer:{
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 5,
+    alignItems: 'center',
+},
+
+iconsContainer1: {
+    flexDirection: 'row', 
+},
+icon4: {
     marginHorizontal: 20,
-  },
-  text9: {
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  text10: {
+},
+text9: {
+    alignItems: 'center',
+},
+text10: {
     fontSize: 10,
-  },
+}
 });
 export default Confirmation;
