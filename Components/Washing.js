@@ -276,7 +276,7 @@ class Washing extends React.Component {
                 <View style={styles.container}>
 
                     <TouchableOpacity style={styles.button} onPress={this.handleIconPressInbox}>
-                        <Text style={styles.buttonText}>Confirm Booking</Text>
+                        <Text style={styles.buttonText}>Continue</Text>
                     </TouchableOpacity>
                 </View>
 

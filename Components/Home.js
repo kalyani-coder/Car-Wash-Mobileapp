@@ -9,7 +9,8 @@ import {
   Linking,
   FlatList,
   TextInput,
-  Modal
+  Modal,
+  map
 } from "react-native";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -42,7 +43,9 @@ class Home extends React.Component {
 
       // API
       data: [],
+      myFetchedData: [],
       services: [],
+
 
 
 
@@ -51,14 +54,16 @@ class Home extends React.Component {
 
   //API
   componentDidMount() {
-    this.callApi();
+    this.callApiPromotion();
+    this.callApiService();
+
     this.fetchservices();
   }
 
 
-
-  async callApi() {
-    const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  // for promotion
+  async callApiPromotion() {
+    const apiUrl = 'https://car-wash-backend-api.onrender.com/api/promotions';
     try {
       let resp = await fetch(apiUrl);
       if (!resp.ok) {
@@ -70,12 +75,26 @@ class Home extends React.Component {
       console.error('Error fetching promotion:', error);
       // Handle the error, e.g., show an error message to the user
     }
-  }
+  };
+  async callApiService() {
+    const apiUrl = 'https://car-wash-backend-api.onrender.com/api/topservices';
+    try {
+      let resp = await fetch(apiUrl);
+      if (!resp.ok) {
+        throw new Error('Network response was not ok');
+      }
+      let respJson = await resp.json();
+      this.setState({ myFetchedData: respJson }); // Update the state with the new variable name
+    } catch (error) {
+      console.error('Error fetching promotion:', error);
+      // Handle the error, e.g., show an error message to the user
+    }
+  };
+
+
   //for servivces
-
-
   fetchservices = () => {
-    fetch('https://jsonplaceholder.typicode.com/users') // Replace with your API endpoint
+    fetch('https://car-wash-backend-api.onrender.com/api/services') // Replace with your API endpoint
       .then((response) => response.json())
       .then((data) => {
         this.setState({ services: data });
@@ -84,6 +103,8 @@ class Home extends React.Component {
         console.error(error);
       });
   };
+
+
   // search bar 
   toggleSearchBar = () => {
     this.setState((prevState) => ({
@@ -165,6 +186,7 @@ class Home extends React.Component {
     const { selectedTime, isDatePickerVisible } = this.state;
     const { services } = this.state;
     const { isSearchBarOpen, searchText } = this.state;
+    const { myFetchedData } = this.state;
 
 
     return (
@@ -197,7 +219,7 @@ class Home extends React.Component {
                   />
                   <TouchableOpacity onPress={this.toggleSearchBar} style={styles.closeIcon}>
                     {/* <Icon name="close" size={30} /> */}
-                    <FontAwesomeIcon icon={faCircleXmark} size={25}/>
+                    <FontAwesomeIcon icon={faCircleXmark} size={25} />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -267,7 +289,7 @@ class Home extends React.Component {
                       color="black"
                       backgroundColor="#F2F3F4"
                       margin={4}>
-                      <Text style={styles.wash}>{services[0].id}</Text>
+                      <Text style={styles.wash}>{services[0].servicePrice}</Text>
                     </View>
                   )}
                 </TouchableOpacity>
@@ -276,7 +298,7 @@ class Home extends React.Component {
                 <View>
                   {services.length >= 1 && (
                     <View>
-                      <Text style={styles.wash}>{services[0].username}</Text>
+                      <Text style={styles.wash}>{services[0].serviceName}</Text>
                     </View>
                   )}
                 </View>
@@ -307,7 +329,7 @@ class Home extends React.Component {
                       color="black"
                       backgroundColor="#F2F3F4"
                       margin={4}>
-                      <Text style={styles.wash}>{services[1].id}</Text>
+                      <Text style={styles.wash}>{services[1].servicePrice}</Text>
                     </View>
                   )}
                 </TouchableOpacity>
@@ -315,7 +337,7 @@ class Home extends React.Component {
                 <View>
                   {services.length >= 2 && (
                     <View>
-                      <Text style={styles.wash}>{services[1].username}</Text>
+                      <Text style={styles.wash}>{services[1].serviceName}</Text>
                     </View>
                   )}
                 </View>
@@ -348,7 +370,7 @@ class Home extends React.Component {
                       color="black"
                       backgroundColor="#F2F3F4"
                       margin={4}>
-                      <Text style={styles.wash}>{services[2].id}</Text>
+                      <Text style={styles.wash}>{services[2].servicePrice}</Text>
                     </View>
                   )}
                 </TouchableOpacity>
@@ -357,7 +379,7 @@ class Home extends React.Component {
                 <View>
                   {services.length >= 3 && (
                     <View>
-                      <Text style={styles.wash}>{services[2].username}</Text>
+                      <Text style={styles.wash}>{services[2].serviceName}</Text>
                     </View>
                   )}
                 </View>
@@ -386,7 +408,7 @@ class Home extends React.Component {
                       color="black"
                       backgroundColor="#F2F3F4"
                       margin={4}>
-                      <Text style={styles.wash}>{services[3].id}</Text>
+                      <Text style={styles.wash}>{services[3].servicePrice}</Text>
                     </View>
                   )}
                 </TouchableOpacity>
@@ -394,7 +416,7 @@ class Home extends React.Component {
                 <View>
                   {services.length >= 4 && (
                     <View>
-                      <Text style={styles.wash}>{services[3].username}</Text>
+                      <Text style={styles.wash}>{services[3].serviceName}</Text>
                     </View>
                   )}
                 </View>
@@ -489,7 +511,11 @@ class Home extends React.Component {
                 style={styles.promotion2}
                 showsHorizontalScrollIndicator={false}
                 data={this.state.data}
-                renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
+                renderItem={({ item }) => <Image
+                  // key={index}
+                  source={{ uri: item.image }}
+                  style={styles.item}
+                />}
               ></FlatList>
 
 
@@ -509,26 +535,30 @@ class Home extends React.Component {
             horizontal={true}
             style={styles.topservice2}
             showsHorizontalScrollIndicator={false}
-          >
-            <Image source={require("./Images/car1.jpg")} style={styles.item1} />
+          > */}
+          {/* <Image source={require("./Images/car1.jpg")} style={styles.item1} />
             <Image source={require("./Images/car2.jpg")} style={styles.item1} />
             <Image source={require("./Images/car3.jpg")} style={styles.item1} />
-            <Image source={require("./Images/car1.jpg")} style={styles.item1} />
-          </ScrollView> */}
+            <Image source={require("./Images/car1.jpg")} style={styles.item1} /> */}
           <View>
-            <TouchableOpacity onPress={this.handleIconPressService}>
+            <TouchableOpacity onPress={this.handleIconPressInbox}>
               <FlatList
                 horizontal={true}
-                style={styles.promotion2}
+                style={styles.topservice2}
                 showsHorizontalScrollIndicator={false}
-                data={this.state.data}
-                renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
+                data={this.state.myFetchedData}
+                renderItem={({ item }) => <Image
+                  // key={index}
+                  source={{ uri: item.image }}
+                  style={styles.item}
+                />}
               ></FlatList>
 
 
             </TouchableOpacity>
           </View>
 
+          {/* </ScrollView> */}
         </ScrollView>
 
 
@@ -606,7 +636,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'transparent',
     // alignItems: 'center',
     padding: 10,
-   
+
   },
   searchBarContainer: {
     width: '100%',
@@ -624,9 +654,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 10,
     right: 10,
-    margin:8,
-    
-   
+    margin: 8,
+
+
   },
 
 
