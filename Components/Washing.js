@@ -81,9 +81,13 @@ class Washing extends React.Component {
     handleIconPressHome = () => {
         this.props.navigation.navigate('Home'); // Navigate to the home screen
     };
-    //for washing itself page
-    handleIconPressBooking = () => {
+    //for services
+    handleIconPressService = () => {
         this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
+    };
+    //for Booking
+    handleIconPressBooking = () => {
+        this.props.navigation.navigate('Appointment'); // Navigate to the Appointment screen
     };
     //inbox page
     handleIconPressInbox = () => {
@@ -107,143 +111,156 @@ class Washing extends React.Component {
         const { selectedStars } = this.state;
         return (
             <>
-                
 
-                    {/* <Text style={styles.text}>Washing</Text> */}
-                    <ScrollView
-                        Vertical={true}
-                        showsVerticalScrollIndicator={false}
-                    >
 
-                        <View style={{ height: 120, width: 350, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
-                            <Text style={styles.text1}>Deep Wash</Text>
+                {/* <Text style={styles.text}>Washing</Text> */}
+                <ScrollView
+                    Vertical={true}
+                    showsVerticalScrollIndicator={false}
+                >
+
+                    <View style={{ height: 120, width: 350, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
+                        <Text style={styles.text1}>Deep Wash</Text>
+                    </View>
+
+                    <View style={styles.about}>
+                        <Text style={styles.text2}>About</Text>
+                        <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Neque esse omnis ut iusto dicta soluta impedit fugiat.</Text>
+                    </View>
+
+                    <View style={styles.reviewtext}>
+                        <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Reviews</Text>
+                        <View style={styles.sees}>
+                            <Text>See all</Text>
+                            <MaterialCommunityIcons name="greater-than" size={17} />
                         </View>
-
-                        <View style={styles.about}>
-                            <Text style={styles.text2}>About</Text>
-                            <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Neque esse omnis ut iusto dicta soluta impedit fugiat.</Text>
-                        </View>
-
-                        <View style={styles.reviewtext}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Reviews</Text>
-                            <View style={styles.sees}>
-                                <Text>See all</Text>
-                                <MaterialCommunityIcons name="greater-than" size={17} />
-                            </View>
-                        </View>
-
-               
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <View style={{ height: 150, width: 300, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
-                        <View style={styles.review}>
-                            <View style={styles.icons}>
-                                <AntDesign name="contacts" size={35} color="black" backgroundColor="white" margin={4} />
-
-                                <Text style={styles.text3}>Mr Xyz</Text>
-                                <View style={styles.icon}>
+                    </View>
 
 
-                                    {[1, 2, 3, 4, 5].map((index) => (
-                                        <TouchableOpacity
-                                            key={index}
-                                            onPress={() => this.handleStarPress(index)}
-                                            style={styles.starContainer}
-                                        >
-                                            <Entypo
-                                                name="star"
-                                                size={20}
-                                                color={index <= selectedStars ? 'yellow' : 'gray'}
-                                            />
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        <View style={{ height: 150, width: 300, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
+                            <View style={styles.review}>
+                                <View style={styles.icons}>
+                                    <AntDesign name="contacts" size={35} color="black" backgroundColor="white" margin={4} />
 
-                                        </TouchableOpacity>
-                                    ))}
+                                    <Text style={styles.text3}>Mr Xyz</Text>
+                                    <View style={styles.icon}>
 
 
+                                        {[1, 2, 3, 4, 5].map((index) => (
+                                            <TouchableOpacity
+                                                key={index}
+                                                onPress={() => this.handleStarPress(index)}
+                                                style={styles.starContainer}
+                                            >
+                                                <Entypo
+                                                    name="star"
+                                                    size={20}
+                                                    color={index <= selectedStars ? 'yellow' : 'gray'}
+                                                />
+
+                                            </TouchableOpacity>
+                                        ))}
+
+
+                                    </View>
                                 </View>
+                                <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi tempore alias eum deserunt recusandae ex rerum qui rem.</Text>
                             </View>
-                            <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi tempore alias eum deserunt recusandae ex rerum qui rem.</Text>
                         </View>
-                    </View>
-                    <View style={{ height: 150, width: 300, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
-                        <View style={styles.review}>
-                            <View style={styles.icons}>
-                                <AntDesign name="contacts" size={35} color="black" backgroundColor="white" margin={4} />
+                        <View style={{ height: 150, width: 300, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
+                            <View style={styles.review}>
+                                <View style={styles.icons}>
+                                    <AntDesign name="contacts" size={35} color="black" backgroundColor="white" margin={4} />
 
-                                <Text style={styles.text3}>Mr Xyz</Text>
-                                <View style={styles.icon}>
+                                    <Text style={styles.text3}>Mr Xyz</Text>
+                                    <View style={styles.icon}>
 
-                                    {[1, 2, 3, 4, 5].map((index) => (
-                                        <TouchableOpacity
-                                            key={index}
-                                            onPress={() => this.handleStarPress(index)}
-                                            style={styles.starContainer}
-                                        >
-                                            <Entypo
-                                                name="star"
-                                                size={20}
-                                                color={index <= selectedStars ? 'yellow' : 'gray'}
-                                            />
-                                        </TouchableOpacity>
-                                    ))}
+                                        {[1, 2, 3, 4, 5].map((index) => (
+                                            <TouchableOpacity
+                                                key={index}
+                                                onPress={() => this.handleStarPress(index)}
+                                                style={styles.starContainer}
+                                            >
+                                                <Entypo
+                                                    name="star"
+                                                    size={20}
+                                                    color={index <= selectedStars ? 'yellow' : 'gray'}
+                                                />
+                                            </TouchableOpacity>
+                                        ))}
+                                    </View>
                                 </View>
+                                <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi tempore alias eum deserunt recusandae ex rerum qui rem.</Text>
                             </View>
-                            <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi tempore alias eum deserunt recusandae ex rerum qui rem.</Text>
                         </View>
-                    </View>
 
-                </ScrollView>
+                    </ScrollView>
 
-                <Text style={{ fontWeight: 'bold', marginHorizontal: 20, fontSize: 15, marginVertical: 10 }}>Glossgenic</Text>
-                <View style={{ height: 50, width: 380, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
-                    <View style={styles.gloss}>
-                        <TouchableOpacity onPress={this.openMapLink}>
-                            <FontAwesome name="map-marker" size={35} color="black" />
-                        </TouchableOpacity>
-                        <Text style={{ fontSize: 15 }}>Amanora Park Town 1284 ABC Address</Text>
-                        <MaterialCommunityIcons name="greater-than" size={17} color="black"/>
-                    </View>
-                </View>
-
-                <Text style={{ fontWeight: 'bold', marginHorizontal: 20, fontSize: 15, marginVertical: 10 }}>Choose Date</Text>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <View style={styles.date}>
-                        <Text style={styles.datetext}>{formattedDate}</Text>
-                    </View>
-                    <View style={styles.date}>
-                        <Text style={styles.datetext}>{formattedDate}</Text>
-                    </View>
-                    <View style={styles.date}>
-                        <Text style={styles.datetext}>{formattedDate}</Text>
-                    </View>
-                    <View style={styles.date}>
-                        <Text style={styles.datetext}>{formattedDate}</Text>
-                    </View>
-                    <View style={styles.date}>
-                        <Text style={styles.datetext}>{formattedDate}</Text>
-                    </View>
-                    <View style={styles.date}>
-                        <Text style={styles.datetext}>{formattedDate}</Text>
-                    </View>
-                    <View style={styles.date}>
-                        <Text style={styles.datetext}>{formattedDate}</Text>
-                    </View>
-
-                </ScrollView>
-                <Text style={{ fontWeight: 'bold', marginHorizontal: 20, fontSize: 15, marginVertical: 5 }}>Choose time</Text>
-                <View style={styles.time1}>
-                    <View style={styles.date1}>
-                        {this.state.selectedTimes.map((time, index) => (
-                            <TouchableOpacity
-                                key={index}
-                                onPress={() => this.showDateTimePicker(index)}
-                                style={styles.timePicker}
-                            >
-                                <Text style={styles.datetext1}>
-                                    {time || '8:30'}
-                                </Text>
+                    <Text style={{ fontWeight: 'bold', marginHorizontal: 20, fontSize: 15, marginVertical: 10 }}>Glossgenic</Text>
+                    <View style={{ height: 50, width: 360, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
+                        <View style={styles.gloss}>
+                            <TouchableOpacity onPress={this.openMapLink}>
+                                <FontAwesome name="map-marker" size={35} color="black" marginBottom={5}/>
                             </TouchableOpacity>
-                        ))}
+                            <Text style={{ fontSize: 15 }}>Amanora Park Town 1284 ABC Address</Text>
+                            <TouchableOpacity onPress={this.openMapLink}>
+                                <MaterialCommunityIcons name="greater-than" size={17} color="black" />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+                    <Text style={{ fontWeight: 'bold', marginHorizontal: 20, fontSize: 15, marginVertical: 10 }}>Choose Date</Text>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        <View style={styles.date}>
+                            <Text style={styles.datetext}>{formattedDate}</Text>
+                        </View>
+                        <View style={styles.date}>
+                            <Text style={styles.datetext}>{formattedDate}</Text>
+                        </View>
+                        <View style={styles.date}>
+                            <Text style={styles.datetext}>{formattedDate}</Text>
+                        </View>
+                        <View style={styles.date}>
+                            <Text style={styles.datetext}>{formattedDate}</Text>
+                        </View>
+                        <View style={styles.date}>
+                            <Text style={styles.datetext}>{formattedDate}</Text>
+                        </View>
+                        <View style={styles.date}>
+                            <Text style={styles.datetext}>{formattedDate}</Text>
+                        </View>
+                        <View style={styles.date}>
+                            <Text style={styles.datetext}>{formattedDate}</Text>
+                        </View>
+
+                    </ScrollView>
+                    <Text style={{ fontWeight: 'bold', marginHorizontal: 20, fontSize: 15, marginVertical: 5 }}>Choose time</Text>
+                    <View style={styles.time1}>
+                        <View style={styles.date1}>
+                            {this.state.selectedTimes.map((time, index) => (
+                                <TouchableOpacity
+                                    key={index}
+                                    onPress={() => this.showDateTimePicker(index)}
+                                    style={styles.timePicker}
+                                >
+                                    <Text style={styles.datetext1}>
+                                        {time || '8:30'}
+                                    </Text>
+                                </TouchableOpacity>
+                            ))}
+                            <DateTimePickerModal
+                                isVisible={this.state.isDateTimePickerVisible}
+                                mode="time"
+                                is24Hour={true}
+                                display="spinner"
+                                onConfirm={this.handleDateTimeConfirm}
+                                onCancel={this.hideDateTimePicker}
+                            />
+                        </View>
+                    </View >
+                    <View style={styles.timepicker}>
                         <DateTimePickerModal
                             isVisible={this.state.isDateTimePickerVisible}
                             mode="time"
@@ -251,63 +268,60 @@ class Washing extends React.Component {
                             display="spinner"
                             onConfirm={this.handleDateTimeConfirm}
                             onCancel={this.hideDateTimePicker}
+
                         />
+
                     </View>
-                </View >
-                <View style={styles.timepicker}>
-                    <DateTimePickerModal
-                        isVisible={this.state.isDateTimePickerVisible}
-                        mode="time"
-                        is24Hour={true}
-                        display="spinner"
-                        onConfirm={this.handleDateTimeConfirm}
-                        onCancel={this.hideDateTimePicker}
+                </ScrollView>
+                <View style={styles.container}>
 
-                    />
-
+                    <TouchableOpacity style={styles.button} onPress={this.handleIconPressInbox}>
+                        <Text style={styles.buttonText}>Confirm Booking</Text>
+                    </TouchableOpacity>
                 </View>
-            </ScrollView>
-            <View style={styles.footer}>
-            
-                <View style={styles.iconsContainer1}>
 
-                    <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.handleIconPressHome}>
-                            <Entypo name="home" size={30} style={styles.icon4} />
-                        </TouchableOpacity>
-                        <Text style={styles.text10}>Home</Text>
-                    </View>
 
-                    <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.handleIconPressBooking}>
-                            <Entypo name="calendar" size={30} style={styles.icon4} />
-                        </TouchableOpacity>
-                        <Text style={styles.text10}>Booking</Text>
-                    </View>
+                <View style={styles.footer}>
 
-                    <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.handleIconPressInbox}>
-                            <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon4} />
-                        </TouchableOpacity>
-                        <Text style={styles.text10}>Inbox</Text>
-                    </View>
+                    <View style={styles.iconsContainer1}>
 
-                    <View style={styles.text9}>
-                        <TouchableOpacity onPress={this.openSettings}>
-                            <Ionicons name="settings-sharp" size={30} style={styles.icon4} />
-                        </TouchableOpacity>
+                        <View style={styles.text9}>
+                            <TouchableOpacity onPress={this.handleIconPressHome}>
+                                <Entypo name="home" size={30} style={styles.icon4} />
+                            </TouchableOpacity>
+                            <Text style={styles.text10}>Home</Text>
+                        </View>
 
-                        <Text style={styles.text10}>Setting</Text>
+                        <View style={styles.text9}>
+                            <TouchableOpacity onPress={this.handleIconPressBooking}>
+                                <Entypo name="calendar" size={30} style={styles.icon4} />
+                            </TouchableOpacity>
+                            <Text style={styles.text10}>Booking</Text>
+                        </View>
+
+                        <View style={styles.text9}>
+                            <TouchableOpacity onPress={this.handleIconPressInbox}>
+                                <MaterialIcons name="forward-to-inbox" size={30} style={styles.icon4} />
+                            </TouchableOpacity>
+                            <Text style={styles.text10}>Inbox</Text>
+                        </View>
+
+                        <View style={styles.text9}>
+                            <TouchableOpacity onPress={this.openSettings}>
+                                <Ionicons name="settings-sharp" size={30} style={styles.icon4} />
+                            </TouchableOpacity>
+
+                            <Text style={styles.text10}>Setting</Text>
+                        </View>
                     </View>
                 </View>
-                </View>
+
             </>
         );
 
     }
 }
 const styles = StyleSheet.create({
-
 
     text: {
         textAlign: 'center',
@@ -352,7 +366,7 @@ const styles = StyleSheet.create({
     },
     gloss: {
         paddingTop: 10,
-        marginHorizontal: 20,
+        marginHorizontal: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
@@ -381,28 +395,45 @@ const styles = StyleSheet.create({
         margin: 5,
         paddingTop: 8
     },
-
+    container: {
+        marginHorizontal: 15,
+    },
+    button: {
+        backgroundColor: "#5B7586",
+        height: 45,
+        width: 360,
+        paddingTop: 10,
+        marginTop: 15,
+        borderRadius: 2,
+    },
+    buttonText: {
+        color: "white",
+        fontSize: 16,
+        fontWeight: "bold",
+        textAlign: "center",
+        
+    },
     footer: {
         position: 'fixed',
         bottom: 0,
         left: 0,
         right: 0,
         padding: 5,
-        alignItems:'center',
-       
-      },
-    
-      iconsContainer1: {
-        flexDirection: 'row',
-      },
-      icon4: {
-        marginHorizontal: 20,
-      },
-      text9: {
         alignItems: 'center',
-      },
-      text10: {
+
+    },
+
+    iconsContainer1: {
+        flexDirection: 'row',
+    },
+    icon4: {
+        marginHorizontal: 20,
+    },
+    text9: {
+        alignItems: 'center',
+    },
+    text10: {
         fontSize: 10,
-      }
+    }
 })
 export default Washing;

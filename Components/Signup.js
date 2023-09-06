@@ -312,27 +312,71 @@ class Signup extends Component {
         address: '',
         file: '',
       },
+      formData: {
+        fullname: '',
+        email: '',
+        phoneno: '',
+        dob: '',
+        address: '',
+        file: '',
+      },
     };
   }
 
+  //Api
+  handleInputChange = (field, value) => {
+    this.setState((prevState) => ({
+      formData: {
+        ...prevState.formData,
+        [field]: value,
+      },
+    }));
+  };
+
+  handleSignUp = () => {
+    const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1'; // Replace with your API endpoint
+
+    const { formData } = this.state;
+
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Add any additional headers if required
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response data here
+        console.log('Response data:', data);
+        // Redirect to another screen or perform other actions upon successful signup
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.error('Error:', error);
+      });
+  };
+
+
   handleFilePick = async () => {
-        try {
-          const result = await DocumentPicker.pick({
-            type: [DocumentPicker.types.allFiles],
-          });
-    
-          this.setState({
-            selectedFile: result,
-          });
-        } catch (err) {
-          if (DocumentPicker.isCancel(err)) {
-            // User cancelled the picker
-          } else {
-            throw err;
-          }
-        }
-      };
-    
+    try {
+      const result = await DocumentPicker.pick({
+        type: [DocumentPicker.types.allFiles],
+      });
+
+      this.setState({
+        selectedFile: result,
+      });
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        // User cancelled the picker
+      } else {
+        throw err;
+      }
+    }
+  };
+
 
   validateFullName = () => {
     const { fullname } = this.state;
@@ -490,6 +534,7 @@ class Signup extends Component {
   render() {
     const { fullname, email, phoneno, dob, address, errors } = this.state;
     const { selectedFile } = this.state;
+    const { formData } = this.state;
 
     return (
       <View style={styles.container}>
@@ -499,6 +544,8 @@ class Signup extends Component {
           placeholder="Full Name"
           value={fullname}
           onChangeText={text => this.setState({ fullname: text })}
+          // value={formData.fullname}
+          // onChangeText={(text) => this.handleInputChange('fullname', text)}
           onBlur={this.validateFullName}
           style={styles.input}
         />
@@ -508,6 +555,8 @@ class Signup extends Component {
           placeholder="Email"
           value={email}
           onChangeText={text => this.setState({ email: text })}
+          // value={formData.email}
+          // onChangeText={(text) => this.handleInputChange('email', text)}
           onBlur={this.validateEmail}
           style={styles.input}
         />
@@ -517,6 +566,8 @@ class Signup extends Component {
           placeholder="Phone Number"
           value={phoneno}
           onChangeText={text => this.setState({ phoneno: text })}
+          // value={formData.phoneno}
+          // onChangeText={(text) => this.handleInputChange('phoneno', text)}
           onBlur={this.validatePhoneNo}
           keyboardType="numeric"
           maxLength={10}
@@ -528,6 +579,8 @@ class Signup extends Component {
           placeholder="Date of Birth"
           value={dob}
           onChangeText={text => this.setState({ dob: text })}
+          // value={formData.dob}
+          // onChangeText={(text) => this.handleInputChange('dob', text)}
           onBlur={this.validateDOB}
           keyboardType="numeric"
           style={styles.input}
@@ -539,6 +592,8 @@ class Signup extends Component {
           placeholder="Address"
           value={address}
           onChangeText={text => this.setState({ address: text })}
+          // value={formData.address}
+          // onChangeText={(text) => this.handleInputChange('address', text)}
           onBlur={this.validateAddress}
           style={styles.input}
         />
@@ -593,21 +648,21 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   choosefile: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 10,
-        marginBottom: 20,
-        borderRadius: 5
-      },
-      selectfile: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 5,
-        borderRadius: 5
-    
-      },
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 10,
+    marginBottom: 20,
+    borderRadius: 5
+  },
+  selectfile: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 5,
+    borderRadius: 5
+
+  },
   button: {
     backgroundColor: '#5B7586',
     height: 50,

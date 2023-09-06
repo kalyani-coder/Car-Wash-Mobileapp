@@ -7,8 +7,11 @@ import {
   Image,
   ScrollView,
   Linking,
+  FlatList,
+  TextInput,
+  Modal
 } from "react-native";
-import { Calendar } from "react-native-calendars";
+
 import DateTimePicker from "@react-native-community/datetimepicker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
@@ -16,17 +19,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons/faMagnifyingGlass';
 import { faBell } from '@fortawesome/free-regular-svg-icons/faBell';
 import { faUser } from '@fortawesome/free-regular-svg-icons/faUser';
-import {faCar} from '@fortawesome/free-solid-svg-icons/faCar';
-
-
-
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons/faCircleXmark';
 import { Ionicons } from "@expo/vector-icons";
-import { Icon } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
+
 
 class Home extends React.Component {
   constructor(props) {
@@ -37,9 +37,60 @@ class Home extends React.Component {
       showPicker: false,
       selectedTime: new Date(),
       isDatePickerVisible: false,
+      isSearchBarOpen: false,
+      searchText: '',
+
+      // API
+      data: [],
+      services: [],
+
+
 
     };
   }
+
+  //API
+  componentDidMount() {
+    this.callApi();
+    this.fetchservices();
+  }
+
+
+
+  async callApi() {
+    const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+    try {
+      let resp = await fetch(apiUrl);
+      if (!resp.ok) {
+        throw new Error('Network response was not ok');
+      }
+      let respJson = await resp.json();
+      this.setState({ data: respJson });
+    } catch (error) {
+      console.error('Error fetching promotion:', error);
+      // Handle the error, e.g., show an error message to the user
+    }
+  }
+  //for servivces
+
+
+  fetchservices = () => {
+    fetch('https://jsonplaceholder.typicode.com/users') // Replace with your API endpoint
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ services: data });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  // search bar 
+  toggleSearchBar = () => {
+    this.setState((prevState) => ({
+      isSearchBarOpen: !prevState.isSearchBarOpen,
+    }));
+  };
+
 
   //for date
   handleDateChange = (event, selectedDate) => {
@@ -84,10 +135,15 @@ class Home extends React.Component {
   handleIconPressHome = () => {
     this.props.navigation.navigate('Home'); // Navigate to the home screen
   };
-  //for Booking 
-  handleIconPressBooking = () => {
+  //for services
+  handleIconPressService = () => {
     this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
   };
+  //for Booking
+  handleIconPressBooking = () => {
+    this.props.navigation.navigate('Appointment'); // Navigate to the Appointment screen
+  };
+
   //inbox page
   handleIconPressInbox = () => {
     this.props.navigation.navigate('Confirmation'); // Navigate to the Confirmation page screen
@@ -107,226 +163,314 @@ class Home extends React.Component {
     const formattedTime = this.formatTime(this.state.currentTime);
     const { selectedDate, showPicker } = this.state;
     const { selectedTime, isDatePickerVisible } = this.state;
-    const { navigation } = this.props;
+    const { services } = this.state;
+    const { isSearchBarOpen, searchText } = this.state;
+
 
     return (
       <>
-     
 
-          <View style={styles.container1}>
 
-            <Text style={styles.text}>Hello</Text>
-            <View style={styles.iconsContainer}>
-           
+        <View style={styles.container1}>
+
+          <Text style={styles.text}>Hello</Text>
+          <View style={styles.iconsContainer}>
+
+
+            <TouchableOpacity onPress={this.toggleSearchBar}>
               <FontAwesomeIcon icon={faMagnifyingGlass} size={25}
                 color="black"
-                style={styles.icon}/>
-               <TouchableOpacity onPress={this.handleIconPressNotification}>
-              
+                style={styles.icon} />
+            </TouchableOpacity>
+            <Modal
+              transparent={true}
+              animationType="slide"
+              visible={isSearchBarOpen}
+              onRequestClose={this.toggleSearchBar}
+            >
+              <View style={styles.modalContainer}>
+                <View style={styles.searchBarContainer}>
+                  <TextInput
+                    placeholder="Search..."
+                    value={searchText}
+                    onChangeText={(text) => this.setState({ searchText: text })}
+                  />
+                  <TouchableOpacity onPress={this.toggleSearchBar} style={styles.closeIcon}>
+                    {/* <Icon name="close" size={30} /> */}
+                    <FontAwesomeIcon icon={faCircleXmark} size={25}/>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Modal>
+
+
+            <TouchableOpacity onPress={this.handleIconPressNotification}>
               <FontAwesomeIcon icon={faBell} size={25}
                 color="black"
                 style={styles.icon} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this.handleIconPressProfile}>
-              
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={this.handleIconPressProfile}>
               <FontAwesomeIcon icon={faUser} size={25}
                 color="black"
-                style={styles.icon}/>
+                style={styles.icon} />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <ScrollView Vertical={true}
+          showsVerticalScrollIndicator={false}
+        >
+
+          <View style={styles.Section}>
+
+            <View style={{ height: 110, width: 175, backgroundColor: "#F2F3F4" }}>
+              <Text style={styles.text1}>Rainy Wash Offer</Text>
+              <Text style={{ color: "blue", marginHorizontal: 20 }}>50% off</Text>
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>Book Now</Text>
               </TouchableOpacity>
             </View>
+
+            <Image
+              style={styles.img}
+              source={{
+                uri: 'https://reactnative.dev/img/tiny_logo.png',
+              }}
+            />
+
           </View>
 
-          <ScrollView Vertical={true}
-            showsVerticalScrollIndicator={false}
-          >
+          <Text style={styles.text3}>Services</Text>
 
-            <View style={styles.Section}>
+          <View style={styles.icon1}>
+            <View
+              style={{
+                height: 50,
+                width: 160,
+                backgroundColor: "white",
+                borderColor: "black",
+                borderWidth: 1,
+              }}
+            >
+              <View style={styles.icon3}>
 
-              <View style={{ height: 110, width: 175, backgroundColor: "#F2F3F4" }}>
-                <Text style={styles.text1}>Rainy Wash Offer</Text>
-                <Text style={{ color: "blue", marginHorizontal: 20 }}>50% off</Text>
-                <TouchableOpacity style={styles.button}>
-                  <Text style={styles.buttonText}>Book Now</Text>
+                <TouchableOpacity onPress={this.handleIconPressService}>
+
+                  {/* <MaterialIcons
+                    name="local-car-wash"
+                    size={40} color="black"
+                    backgroundColor="#F2F3F4"
+                    margin={4} /> */}
+                  {services.length >= 1 && (
+                    <View size={40}
+                      color="black"
+                      backgroundColor="#F2F3F4"
+                      margin={4}>
+                      <Text style={styles.wash}>{services[0].id}</Text>
+                    </View>
+                  )}
                 </TouchableOpacity>
+
+                {/* <Text style={styles.wash}>Wash</Text> */}
+                <View>
+                  {services.length >= 1 && (
+                    <View>
+                      <Text style={styles.wash}>{services[0].username}</Text>
+                    </View>
+                  )}
+                </View>
+
               </View>
-
-              <Image
-                style={styles.img}
-                source={{
-                  uri: 'https://reactnative.dev/img/tiny_logo.png',
-                }}
-              />
-
             </View>
 
-            <Text style={styles.text3}>Services</Text>
-
-            <View style={styles.icon1}>
-              <View
-                style={{
-                  height: 50,
-                  width: 160,
-                  backgroundColor: "white",
-                  borderColor: "black",
-                  borderWidth: 1,
-                }}
-              >
-                <View style={styles.icon3}>
-                 
-                  <TouchableOpacity  onPress={this.handleIconPressBooking}>
-                {/* <FontAwesomeIcon icon={faCar} size={35}
-                    color="black"
-                    backgroundColor="#F2F3F4"
-                    margin={8}/> */}
-                    <MaterialIcons name="local-car-wash" size={40}  color="black"
-                    backgroundColor="#F2F3F4"
-                    margin={4} />
-                    </TouchableOpacity>
-
-                  <Text style={styles.wash}>Wash</Text>
-                </View>
-              </View>
-
-              <View
-                style={{
-                  height: 50,
-                  width: 160,
-                  backgroundColor: "white",
-                  borderColor: "black",
-                  borderWidth: 1,
-                }}
-              >
-                <View style={styles.icon3}>
-                <TouchableOpacity  onPress={this.handleIconPressBooking}>
-                  <MaterialCommunityIcons
+            <View
+              style={{
+                height: 50,
+                width: 160,
+                backgroundColor: "white",
+                borderColor: "black",
+                borderWidth: 1,
+              }}
+            >
+              <View style={styles.icon3}>
+                <TouchableOpacity onPress={this.handleIconPressService}>
+                  {/* <MaterialCommunityIcons
                     name="card-account-details-outline"
                     size={40}
                     color="black"
                     backgroundColor="#F2F3F4"
                     margin={4}
-                  />
-                  </TouchableOpacity>
-                  <Text style={styles.wash}>Detailing</Text>
+                  /> */}
+                  {services.length >= 2 && (
+                    <View size={40}
+                      color="black"
+                      backgroundColor="#F2F3F4"
+                      margin={4}>
+                      <Text style={styles.wash}>{services[1].id}</Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
+                {/* <Text style={styles.wash}>Detailing</Text> */}
+                <View>
+                  {services.length >= 2 && (
+                    <View>
+                      <Text style={styles.wash}>{services[1].username}</Text>
+                    </View>
+                  )}
                 </View>
+
               </View>
             </View>
+          </View>
 
-            <View style={styles.icon2}>
-              <View
-                style={{
-                  height: 50,
-                  width: 160,
-                  backgroundColor: "white",
-                  borderColor: "black",
-                  borderWidth: 1,
-                }}
-              >
-                <View style={styles.icon3}>
-                <TouchableOpacity  onPress={this.handleIconPressBooking}>
-                  <MaterialIcons
+          <View style={styles.icon2}>
+            <View
+              style={{
+                height: 50,
+                width: 160,
+                backgroundColor: "white",
+                borderColor: "black",
+                borderWidth: 1,
+              }}
+            >
+              <View style={styles.icon3}>
+                <TouchableOpacity onPress={this.handleIconPressService}>
+                  {/* <MaterialIcons
                     name="cleaning-services"
                     size={40}
                     color="black"
                     backgroundColor="#F2F3F4"
                     margin={4}
-                  />
-                  </TouchableOpacity>
-                  <Text style={styles.wash}>Cleaning</Text>
+                  /> */}
+                  {services.length >= 3 && (
+                    <View size={40}
+                      color="black"
+                      backgroundColor="#F2F3F4"
+                      margin={4}>
+                      <Text style={styles.wash}>{services[2].id}</Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
+                {/* <Text style={styles.wash}>Cleaning</Text>
+                 */}
+                <View>
+                  {services.length >= 3 && (
+                    <View>
+                      <Text style={styles.wash}>{services[2].username}</Text>
+                    </View>
+                  )}
                 </View>
               </View>
-              <View
-                style={{
-                  height: 50,
-                  width: 160,
-                  backgroundColor: "white",
-                  borderColor: "black",
-                  borderWidth: 1,
-                }}
-              >
-                <View style={styles.icon3}>
-                <TouchableOpacity  onPress={this.handleIconPressBooking}>
-                  <Ionicons
+            </View>
+            <View
+              style={{
+                height: 50,
+                width: 160,
+                backgroundColor: "white",
+                borderColor: "black",
+                borderWidth: 1,
+              }}
+            >
+              <View style={styles.icon3}>
+                <TouchableOpacity onPress={this.handleIconPressService}>
+                  {/* <Ionicons
                     name="car-sharp"
                     size={40}
                     color="black"
                     backgroundColor="#F2F3F4"
                     margin={4}
-                  />
-                  </TouchableOpacity>
-                  <Text style={styles.wash}>Polish</Text>
-                </View>
-              </View>
-            </View>
-            <Text style={styles.text4}>Upcoming Booking</Text>
-            <View
-              style={{
-                height: 100,
-                width: 350,
-                backgroundColor: "#F2F3F4",
-                marginHorizontal: 20,
-              }}
-            >
-              <View style={styles.booking}>
-                <Ionicons name="car-sharp" size={40} color="black" margin={4} />
-                <Text style={styles.carwash}>Car Wash:car 1</Text>
-                <TouchableOpacity style={styles.btn3}>
-                  <Text style={styles.btntext}>Pending</Text>
+                  /> */}
+                  {services.length >= 4 && (
+                    <View size={40}
+                      color="black"
+                      backgroundColor="#F2F3F4"
+                      margin={4}>
+                      <Text style={styles.wash}>{services[3].id}</Text>
+                    </View>
+                  )}
                 </TouchableOpacity>
-              </View>
-
-              <View style={styles.clocktime}>
-                <View style={styles.clock}>
-                
-
-                  <TouchableOpacity onPress={this.showDatePicker}>
-                    <EvilIcons name="clock" size={22} color="black" />
-                  </TouchableOpacity>
-
-                  {selectedTime && (
-                    <Text>{(this.formatTime(selectedTime)) || "8:30"}</Text>
-                  )}
-                  <DateTimePickerModal
-                    isVisible={isDatePickerVisible}
-                    mode="time"
-                    onConfirm={this.handleDateConfirm}
-                    onCancel={this.hideDatePicker}
-                  />
-
-                </View>
-
-                <View style={styles.time}>
-                  <TouchableOpacity
-                    onPress={() => this.setState({ showPicker: true })}
-                  >
-                    <AntDesign name="calendar" size={24} color="black" />
-                  </TouchableOpacity>
-                  {showPicker && (
-                    <DateTimePicker
-                      value={selectedDate}
-                      mode="date"
-                      display="default"
-                      onChange={this.handleDateChange}
-                    />
-                  )}
-                  {selectedDate && (
-                    <Text> {selectedDate.toLocaleDateString()}</Text>
+                {/* <Text style={styles.wash}>Polish</Text> */}
+                <View>
+                  {services.length >= 4 && (
+                    <View>
+                      <Text style={styles.wash}>{services[3].username}</Text>
+                    </View>
                   )}
                 </View>
               </View>
             </View>
-            <View style={styles.promotion1}>
-              <Text style={styles.text5}>Promotions</Text>
-
-              <TouchableOpacity style={styles.text6}>
-                <Text>View all</Text>
+          </View>
+          <Text style={styles.text4}>Upcoming Booking</Text>
+          <View
+            style={{
+              height: 100,
+              width: 350,
+              backgroundColor: "#F2F3F4",
+              marginHorizontal: 20,
+            }}
+          >
+            <View style={styles.booking}>
+              <Ionicons name="car-sharp" size={40} color="black" margin={4} />
+              <Text style={styles.carwash}>Car Wash:car 1</Text>
+              <TouchableOpacity style={styles.btn3}>
+                <Text style={styles.btntext}>Pending</Text>
               </TouchableOpacity>
             </View>
-            <ScrollView
-              horizontal={true}
-              style={styles.promotion2}
-              showsHorizontalScrollIndicator={false}
-            >
-              <TouchableOpacity onPress={this.handleIconPressInbox}>
+
+            <View style={styles.clocktime}>
+              <View style={styles.clock}>
+
+
+                <TouchableOpacity onPress={this.showDatePicker}>
+                  <EvilIcons name="clock" size={22} color="black" />
+                </TouchableOpacity>
+
+                {selectedTime && (
+                  <Text>{(this.formatTime(selectedTime)) || "8:30"}</Text>
+                )}
+                <DateTimePickerModal
+                  isVisible={isDatePickerVisible}
+                  mode="time"
+                  onConfirm={this.handleDateConfirm}
+                  onCancel={this.hideDatePicker}
+                />
+
+              </View>
+
+              <View style={styles.time}>
+                <TouchableOpacity
+                  onPress={() => this.setState({ showPicker: true })}
+                >
+                  <AntDesign name="calendar" size={24} color="black" />
+                </TouchableOpacity>
+                {showPicker && (
+                  <DateTimePicker
+                    value={selectedDate}
+                    mode="date"
+                    display="default"
+                    onChange={this.handleDateChange}
+                  />
+                )}
+                {selectedDate && (
+                  <Text> {selectedDate.toLocaleDateString()}</Text>
+                )}
+              </View>
+            </View>
+          </View>
+          <View style={styles.promotion1}>
+            <Text style={styles.text5}>Promotions</Text>
+
+            <TouchableOpacity style={styles.text6}>
+              <Text>View all</Text>
+            </TouchableOpacity>
+          </View>
+          {/* <ScrollView
+            horizontal={true}
+            style={styles.promotion2}
+            showsHorizontalScrollIndicator={false}
+          > */}
+          {/* <TouchableOpacity onPress={this.handleIconPressInbox}>
               <Image source={require("./Images/car1.jpg")} style={styles.item} />
               </TouchableOpacity>
               <TouchableOpacity onPress={this.handleIconPressInbox}>
@@ -337,29 +481,58 @@ class Home extends React.Component {
               </TouchableOpacity>
               <TouchableOpacity onPress={this.handleIconPressInbox}>
               <Image source={require("./Images/car3.jpg")} style={styles.item} />
-              </TouchableOpacity>
-            </ScrollView>
-            <View style={styles.topservice1}>
-              <Text style={styles.text7}>Top Services</Text>
-
-              <TouchableOpacity style={styles.text8}>
-                <Text>View all</Text>
-              </TouchableOpacity>
-            </View>
-            <ScrollView
-              horizontal={true}
-              style={styles.topservice2}
-              showsHorizontalScrollIndicator={false}
-            >
-              <Image source={require("./Images/car1.jpg")} style={styles.item1} />
-              <Image source={require("./Images/car2.jpg")} style={styles.item1} />
-              <Image source={require("./Images/car3.jpg")} style={styles.item1} />
-              <Image source={require("./Images/car1.jpg")} style={styles.item1} />
-            </ScrollView>
-          </ScrollView>
+              </TouchableOpacity> */}
+          <View>
+            <TouchableOpacity onPress={this.handleIconPressInbox}>
+              <FlatList
+                horizontal={true}
+                style={styles.promotion2}
+                showsHorizontalScrollIndicator={false}
+                data={this.state.data}
+                renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
+              ></FlatList>
 
 
-         <View style={styles.footer}>
+            </TouchableOpacity>
+          </View>
+
+
+          {/* </ScrollView> */}
+          <View style={styles.topservice1}>
+            <Text style={styles.text7}>Top Services</Text>
+
+            <TouchableOpacity style={styles.text8}>
+              <Text>View all</Text>
+            </TouchableOpacity>
+          </View>
+          {/* <ScrollView
+            horizontal={true}
+            style={styles.topservice2}
+            showsHorizontalScrollIndicator={false}
+          >
+            <Image source={require("./Images/car1.jpg")} style={styles.item1} />
+            <Image source={require("./Images/car2.jpg")} style={styles.item1} />
+            <Image source={require("./Images/car3.jpg")} style={styles.item1} />
+            <Image source={require("./Images/car1.jpg")} style={styles.item1} />
+          </ScrollView> */}
+          <View>
+            <TouchableOpacity onPress={this.handleIconPressService}>
+              <FlatList
+                horizontal={true}
+                style={styles.promotion2}
+                showsHorizontalScrollIndicator={false}
+                data={this.state.data}
+                renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
+              ></FlatList>
+
+
+            </TouchableOpacity>
+          </View>
+
+        </ScrollView>
+
+
+        <View style={styles.footer}>
           <View style={styles.iconsContainer1}>
             <View style={styles.text9}>
               <TouchableOpacity onPress={this.handleIconPressHome}>
@@ -394,13 +567,13 @@ class Home extends React.Component {
               <Text style={styles.text10}>Setting</Text>
             </View>
           </View>
-          </View>
+        </View>
       </>
     );
   }
 }
 const styles = StyleSheet.create({
-  
+
   flex: {
     marginHorizontal: 20,
     marginVertical: 10,
@@ -425,7 +598,39 @@ const styles = StyleSheet.create({
   icon: {
     marginHorizontal: 15,
   },
-  
+
+
+  modalContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background for the modal
+    // backgroundColor: 'transparent',
+    // alignItems: 'center',
+    padding: 10,
+   
+  },
+  searchBarContainer: {
+    width: '100%',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    elevation: 20, // Shadow on Android
+    shadowColor: 'black',
+    shadowOpacity: 0.2,
+    shadowRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  closeIcon: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    margin:8,
+    
+   
+  },
+
+
+
   Section: {
     marginHorizontal: 20,
     marginVertical: 10,
@@ -526,9 +731,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   item: {
+    flexDirection: 'row',
     height: 90,
     width: 160,
     marginRight: 20,
+
   },
   topservice1: {
     flexDirection: "row",
@@ -548,30 +755,15 @@ const styles = StyleSheet.create({
     width: 100,
     marginRight: 20,
   },
-  // iconsContainer1: {
-  //   flexDirection: "row",
-  //   justifyContent: "center",
-  //   marginVertical: 20,
-  // },
 
-  // icon4: {
-  //   marginHorizontal: 20,
-  // },
-  // text9: {
-  //   justifyContent: "space-between",
-  //   alignItems: "center",
-  // },
-  // text10: {
-  //   fontSize: 10,
-  // },
   footer: {
     position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,
     padding: 5,
-    alignItems:'center',
-   
+    alignItems: 'center',
+
   },
 
   iconsContainer1: {
