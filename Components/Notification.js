@@ -33,9 +33,13 @@ class Notification extends React.Component {
   handleIconPressHome = () => {
     this.props.navigation.navigate('Home'); // Navigate to the home screen
   };
-  //for Booking 
-  handleIconPressBooking = () => {
+  //for services
+  handleIconPressService = () => {
     this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
+  };
+  //for Booking
+  handleIconPressBooking = () => {
+    this.props.navigation.navigate('Appointment'); // Navigate to the Appointment screen
   };
   //inbox page
   handleIconPressInbox = () => {

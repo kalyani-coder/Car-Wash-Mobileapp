@@ -1,292 +1,3 @@
-// import React from 'react';
-// import {
-//   View,
-//   Text,
-//   TextInput,
-//   Alert,
-//   StyleSheet,
-//   TouchableOpacity
-// } from 'react-native'
-
-// // import DocumentPicker from 'react-native-document-picker';
-
-// class Signup extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       fullname: '',
-//       email: '',
-//       phoneno: '',
-//       // dateOfBirth: '',
-//       // address: '',
-//       errors: {
-//         fullname: '',
-//         email: '',
-//         phoneno: '',
-
-//       },
-//       selectedFile: null,
-
-//     };
-//   }
-
-//   handleFilePick = async () => {
-//     try {
-//       const result = await DocumentPicker.pick({
-//         type: [DocumentPicker.types.allFiles],
-//       });
-
-//       this.setState({
-//         selectedFile: result,
-//       });
-//     } catch (err) {
-//       if (DocumentPicker.isCancel(err)) {
-//         // User cancelled the picker
-//       } else {
-//         throw err;
-//       }
-//     }
-//   };
-
-
-
-//     //validate fullname
-//     validateFullName = () => {
-//       const { fullname } = this.state;
-//       if (fullname === '') {
-//         // this.setState({ nameError: 'Name cannot be empty' });
-//         this.setState({
-//           errors: {
-//             ...this.state.errors,
-//             fullname: 'Name cannot be empty',
-//           },
-//         });
-//       }
-//       else {
-//         this.setState({
-//           errors: {
-//             ...this.state.errors,
-//             fullname: '',
-//           },
-//         });
-//       }
-//     }
-
-//     validateEmail = () => {
-//       const { email } = this.state;
-//       if (!email.trim()) {
-//         this.setState({
-//           errors: {
-//             ...this.state.errors,
-//             email: 'Please enter your email address',
-//           },
-//         });
-//       } else {
-//         // Your email validation logic
-//         // For example, you could use a regular expression
-//         const validEmailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-//         if (!validEmailPattern.test(email)) {
-//           this.setState({
-//             errors: {
-//               ...this.state.errors,
-//               email: 'Please enter a valid email address',
-//             },
-//           });
-//         } else {
-//           this.setState({
-//             errors: {
-//               ...this.state.errors,
-//               email: '',
-//             },
-//           });
-//         }
-//       }
-//     };
-
-//     validatePhoneNo = () => {
-//       const { phoneno } = this.state;
-//       if (!phoneno.trim()) {
-//         this.setState({
-//           errors: {
-//             ...this.state.errors,
-//             phoneno: 'Please enter your phone number',
-//           },
-//         });
-//       } else {
-//         // Your phone number validation logic
-//         // For example, you could use a regular expression
-//         const validPhonePattern = /^[0-9]{10}$/;
-//         if (!validPhonePattern.test(phoneno)) {
-//           this.setState({
-//             errors: {
-//               ...this.state.errors,
-//               phoneno: 'Please enter a valid phone number',
-//             },
-//           });
-//         } else {
-//           this.setState({
-//             errors: {
-//               ...this.state.errors,
-//               phoneno: '',
-//             },
-//           });
-//         }
-//       }
-//     };
-
-//     areAllFieldsValid = () => {
-//       const { errors } = this.state;
-//       return Object.values(errors).every(error => error === '');
-//     };
-
-
-
-//     handleFormSubmit = () => {
-//       const { fullname, phoneno, email, errors } = this.state;
-
-//       // Validate each field
-//       this.validateFullName();
-//       this.validatePhoneNo();
-//       this.validateEmail();
-
-
-
-//       if (this.areAllFieldsValid()) {
-//         // Navigate to the next screen
-//         this.props.navigation.navigate('Home');
-//       } else {
-//         // Display error messages
-//         alert('Please fill in all required fields correctly.');
-//       }
-//     };
-
-
-
-//   render() {
-//     const { fullname, phoneno, email, errors } = this.state;
-//     const { selectedFile } = this.state;
-//     return (
-//       <View style={styles.container}>
-//         <Text style={{ fontWeight: 'bold', marginBottom: 10, fontSize: 18 }}>Enter Your Information</Text>
-
-//         <TextInput
-//           style={styles.input}
-//           placeholder="Full Name"
-//           onChangeText={text => this.setState({ fullname: text })}
-//           onBlur={this.validateFullName}
-//         />
-//         <Text style={{ color: 'red' }}>{errors.fullname}</Text>
-
-//         <TextInput
-//           style={styles.input}
-//           placeholder="Email"
-//           keyboardType="email-address"
-//           onChangeText={text => this.setState({ email: text })}
-//           onBlur={this.validateEmail}
-//         />
-//         <Text style={{ color: 'red' }}>{errors.email}</Text>
-
-//         <TextInput
-//           style={styles.input}
-//           placeholder="Phone Number"
-
-//           keyboardType="phone-pad"
-//           maxLength={10}
-//           onChangeText={text => this.setState({ phoneno: text })}
-//           onBlur={this.validatePhoneNo}
-//         />
-//         <Text style={{ color: 'red' }}>{errors.phoneno}</Text>
-
-//         {/* <TextInput
-//           style={styles.input}
-//           placeholder="DOB"
-//           onChangeText={(text) => this.setState({ dateOfBirth: text })}
-//           keyboardType="numeric"
-//         />
-
-//         <TextInput
-//           style={styles.input}
-//           placeholder="Address"
-//           onChangeText={(text) => this.setState({ address: text })}
-//           multiline={true}
-//         /> */}
-//         <View style={styles.choosefile}>
-//           <TouchableOpacity onPress={this.handleFilePick}>
-//             <View style={styles.selectfile}>
-//               <Text>Select File</Text>
-//             </View>
-//           </TouchableOpacity>
-//           {selectedFile ? (
-//             <View>
-//               <Text>Selected File: {selectedFile.name}</Text>
-//               <Text>File Size: {selectedFile.size} bytes</Text>
-//             </View>
-//           ) : (
-//             <Text>No file selected</Text>
-//           )}
-//         </View>
-
-
-//         <TouchableOpacity style={styles.button} onPress={this.handleFormSubmit}>
-//           <Text style={styles.buttonText}>Submit</Text>
-//         </TouchableOpacity>
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     padding: 20,
-//     paddingTop: 50
-
-//   },
-//   input: {
-//     borderWidth: 1,
-//     borderColor: '#ccc',
-//     padding: 10,
-//     marginBottom: 20,
-//     borderRadius: 5
-//   },
-//   errorText: {
-//     color: 'red',
-//     // marginBottom: 5,
-//   },
-//   choosefile: {
-//     flexDirection: 'row',
-//     justifyContent: 'space-between',
-//     borderWidth: 1,
-//     borderColor: '#ccc',
-//     padding: 10,
-//     marginBottom: 20,
-//     borderRadius: 5
-//   },
-//   selectfile: {
-//     borderWidth: 1,
-//     borderColor: '#ccc',
-//     padding: 5,
-
-//     borderRadius: 5
-
-//   },
-//   button: {
-//     backgroundColor: '#5B7586',
-//     height: 50,
-//     paddingTop: 10,
-//     marginTop: 25,
-//     borderRadius: 4,
-//   },
-//   buttonText: {
-//     color: 'white',
-//     fontSize: 18,
-//     fontWeight: 'bold',
-//     textAlign: 'center',
-//   },
-// });
-
-// export default Signup;
-
-
 
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, TouchableOpacity } from 'react-native';
@@ -298,243 +9,145 @@ class Signup extends Component {
     super(props);
 
     this.state = {
-      fullname: '',
-      email: '',
-      phoneno: '',
-      dob: '',
-      address: '',
-      file: null,
+      clientName: '',
+      clientEmail: '',
+      clientPhone: '',
+      clientdob: '',
+      clientAddress: '',
+      response:null,
+
       errors: {
-        fullname: '',
-        email: '',
-        phoneno: '',
-        dob: '',
-        address: '',
-        file: '',
-      },
-      formData: {
-        fullname: '',
-        email: '',
-        phoneno: '',
-        dob: '',
-        address: '',
+        clientName: '',
+        clientEmail: '',
+        clientPhone: '',
+        clientdob: '',
+        clientAddress: '',
         file: '',
       },
     };
   }
+  handleSubmit = () => {
+    if (this.validateFields()) {
+      const requestBody = {
+        clientName: this.state.clientName,
+        clientEmail: this.state.clientEmail,
+        clientPhone: this.state.clientPhone,
+        clientdob: this.state.clientdob,
+        clientAddress: this.state.clientAddress,
+      };
 
-  //Api
-  handleInputChange = (field, value) => {
-    this.setState((prevState) => ({
-      formData: {
-        ...prevState.formData,
-        [field]: value,
-      },
-    }));
-  };
-
-  handleSignUp = () => {
-    const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1'; // Replace with your API endpoint
-
-    const { formData } = this.state;
-
-    fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // Add any additional headers if required
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Handle the response data here
-        console.log('Response data:', data);
-        // Redirect to another screen or perform other actions upon successful signup
+      fetch('https://car-wash-backend-api.onrender.com/api/clients', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
       })
-      .catch((error) => {
-        // Handle errors here
-        console.error('Error:', error);
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          this.setState({ response: data });
+          // if (data.success) {
+          //   // Navigate to the success screen upon successful submission
+          //   this.props.navigation.navigate('Home');
+
+          //   console.log('After navigation');
+          // } else {
+          //   Alert.alert('API Error', 'Failed to submit data.');
+          // }
+         
+          this.props.navigation.navigate('Home');
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
+    }
   };
+  validateFields() {
+    const { clientName, clientEmail, clientPhone, clientdob, clientAddress } = this.state;
+    const errors = {};
 
+    if (!clientName) {
+      errors.clientName = 'Client Name is required.';
+    }
 
-  handleFilePick = async () => {
-    try {
-      const result = await DocumentPicker.pick({
-        type: [DocumentPicker.types.allFiles],
-      });
-
-      this.setState({
-        selectedFile: result,
-      });
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
-        // User cancelled the picker
-      } else {
-        throw err;
+    if (!clientEmail) {
+      errors.clientEmail = 'Client Email is required.';
+    } else {
+      // Validate client email format (basic email format validation)
+      const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+      if (!emailPattern.test(clientEmail)) {
+        errors.clientEmail = 'Invalid Client Email.';
       }
     }
-  };
 
-
-  validateFullName = () => {
-    const { fullname } = this.state;
-    if (!fullname.trim()) {
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          fullname: 'Please enter your full name',
-        },
-      });
-      return false;
+    if (!clientPhone) {
+      errors.clientPhone = 'Client Phone Number is required.';
     } else {
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          fullname: '',
-        },
-      });
-      return true;
-    }
-  };
-
-  validateEmail = () => {
-    const { email } = this.state;
-    if (!email.trim()) {
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          email: 'Please enter your email address',
-        },
-      });
-      return false;
-    } else {
-      // Email validation logic
-      const validEmailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-      if (!validEmailPattern.test(email)) {
-        this.setState({
-          errors: {
-            ...this.state.errors,
-            email: 'Please enter a valid email address',
-          },
-        });
-        return false;
-      } else {
-        this.setState({
-          errors: {
-            ...this.state.errors,
-            email: '',
-          },
-        });
-        return true;
+      // Validate client phone number format (basic format validation)
+      const phonePattern = /^[0-9]{10}$/;
+      if (!phonePattern.test(clientPhone)) {
+        errors.clientPhone = 'Invalid Client Phone Number.';
       }
     }
-  };
 
-  validatePhoneNo = () => {
-    const { phoneno } = this.state;
-    if (!phoneno.trim()) {
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          phoneno: 'Please enter your phone number',
-        },
-      });
-      return false;
+    if (!clientdob) {
+      errors.clientdob = 'Client Date of Birth is required.';
     } else {
-      // Phone number validation logic
-      const validPhonePattern = /^[0-9]{10}$/;
-      if (!validPhonePattern.test(phoneno)) {
-        this.setState({
-          errors: {
-            ...this.state.errors,
-            phoneno: 'Please enter a valid phone number',
-          },
-        });
-        return false;
-      } else {
-        this.setState({
-          errors: {
-            ...this.state.errors,
-            phoneno: '',
-          },
-        });
-        return true;
+      // Validate client date of birth format (dd-mm-yyyy)
+      const dobPattern = /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-\d{4}$/;
+      if (!dobPattern.test(clientdob)) {
+        errors.clientdob = 'Invalid Client Date of Birth. Please use dd-mm-yyyy format.';
       }
     }
-  };
 
-  validateDOB = () => {
-    const { dob } = this.state;
-    if (!dob.trim()) {
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          dob: 'Please enter your date of birth',
-        },
-      });
-      return false;
-    } else {
-      // DOB validation logic
-      // You can implement more specific validation here if needed
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          dob: '',
-        },
-      });
-      return true;
+    if (!clientAddress) {
+      errors.clientAddress = 'Client Address is required.';
     }
-  };
-  validateAddress = () => {
-    const { address } = this.state;
-    if (!address.trim()) {
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          address: 'Please enter your address',
-        },
-      });
-      return false;
-    } else {
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          address: '',
-        },
-      });
-      return true;
-    }
-  };
-  handleFileUpload = file => {
-    // Handle file upload logic here
-    this.setState({ file });
-  };
 
-  areAllFieldsValid = () => {
-    const { errors } = this.state;
-    return Object.values(errors).every(error => error === '');
-  };
+    this.setState({ errors });
+    return Object.keys(errors).length === 0;
+  }
 
-  handleFormSubmit = () => {
-    const isFullNameValid = this.validateFullName();
-    const isEmailValid = this.validateEmail();
-    const isPhoneNoValid = this.validatePhoneNo();
-    const isDOBValid = this.validateDOB();
-    const isAddressValid = this.validateAddress();
 
-    if (isFullNameValid && isEmailValid && isPhoneNoValid && isDOBValid && isAddressValid) {
-      this.props.navigation.navigate('Home');
-    } else {
-      Alert.alert('Validation Error', 'Please fill in all required fields correctly.');
-    }
-  };
+  // handleFilePick = async () => {
+  //   try {
+  //     const result = await DocumentPicker.pick({
+  //       type: [DocumentPicker.types.allFiles],
+  //     });
+
+  //     this.setState({
+  //       selectedFile: result,
+  //     });
+  //   } catch (err) {
+  //     if (DocumentPicker.isCancel(err)) {
+  //       // User cancelled the picker
+  //     } else {
+  //       throw err;
+  //     }
+  //   }
+  // };
+
+
+
+  // handleFileUpload = file => {
+  //   // Handle file upload logic here
+  //   this.setState({ file });
+  // };
+
+
+
+
 
   render() {
-    const { fullname, email, phoneno, dob, address, errors } = this.state;
+    const { clientName, clientEmail, clientPhone, clientdob, clientAddress, errors } = this.state;
     const { selectedFile } = this.state;
-    const { formData } = this.state;
+
 
     return (
       <View style={styles.container}>
@@ -542,64 +155,59 @@ class Signup extends Component {
 
         <TextInput
           placeholder="Full Name"
-          value={fullname}
-          onChangeText={text => this.setState({ fullname: text })}
-          // value={formData.fullname}
-          // onChangeText={(text) => this.handleInputChange('fullname', text)}
-          onBlur={this.validateFullName}
+
+          onChangeText={(text) => this.setState({ clientName: text })}
+          value={this.state.clientName}
+          onBlur={this.validateclientName}
           style={styles.input}
         />
-        <Text style={styles.errorText}>{errors.fullname}</Text>
+        <Text style={styles.errorText}>{errors.clientName}</Text>
 
         <TextInput
           placeholder="Email"
-          value={email}
-          onChangeText={text => this.setState({ email: text })}
-          // value={formData.email}
-          // onChangeText={(text) => this.handleInputChange('email', text)}
-          onBlur={this.validateEmail}
+
+          onChangeText={(text) => this.setState({ clientEmail: text })}
+          value={this.state.clientEmail}
+          onBlur={this.validateclientEmail}
           style={styles.input}
         />
-        <Text style={styles.errorText}>{errors.email}</Text>
+        <Text style={styles.errorText}>{errors.clientEmail}</Text>
 
         <TextInput
           placeholder="Phone Number"
-          value={phoneno}
-          onChangeText={text => this.setState({ phoneno: text })}
-          // value={formData.phoneno}
-          // onChangeText={(text) => this.handleInputChange('phoneno', text)}
-          onBlur={this.validatePhoneNo}
+
+          onChangeText={(text) => this.setState({ clientPhone: text })}
+          value={this.state.clientPhone}
+          onBlur={this.validateclientPhone}
           keyboardType="numeric"
           maxLength={10}
           style={styles.input}
         />
-        <Text style={styles.errorText}>{errors.phoneno}</Text>
+        <Text style={styles.errorText}>{errors.clientPhone}</Text>
 
         <TextInput
           placeholder="Date of Birth"
-          value={dob}
-          onChangeText={text => this.setState({ dob: text })}
-          // value={formData.dob}
-          // onChangeText={(text) => this.handleInputChange('dob', text)}
-          onBlur={this.validateDOB}
+
+          onChangeText={(text) => this.setState({ clientdob: text })}
+          value={this.state.clientdob}
+          onBlur={this.validateclientdob}
           keyboardType="numeric"
           style={styles.input}
         />
-        <Text style={styles.errorText}>{errors.dob}</Text>
+        <Text style={styles.errorText}>{errors.clientdob}</Text>
 
 
         <TextInput
           placeholder="Address"
-          value={address}
-          onChangeText={text => this.setState({ address: text })}
-          // value={formData.address}
-          // onChangeText={(text) => this.handleInputChange('address', text)}
-          onBlur={this.validateAddress}
+
+          onChangeText={(text) => this.setState({ clientAddress: text })}
+          value={this.state.clientAddress}
+          onBlur={this.validateclientAddress}
           style={styles.input}
         />
-        <Text style={styles.errorText}>{errors.address}</Text>
+        <Text style={styles.errorText}>{errors.clientAddress}</Text>
 
-        <View style={styles.choosefile}>
+        {/* <View style={styles.choosefile}>
           <TouchableOpacity onPress={this.handleFilePick}>
             <View style={styles.selectfile}>
               <Text>Select File</Text>
@@ -613,11 +221,11 @@ class Signup extends Component {
           ) : (
             <Text>No file selected</Text>
           )}
-        </View>
+        </View> */}
 
 
         <View>
-          <TouchableOpacity style={styles.button} onPress={this.handleFormSubmit}>
+          <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
             <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
         </View>
@@ -626,10 +234,6 @@ class Signup extends Component {
     );
   }
 }
-
-
-
-
 
 const styles = StyleSheet.create({
   container: {

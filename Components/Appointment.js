@@ -26,7 +26,8 @@ const Appointment = () => {
             tabBarLabel: 'Upcoming',
               
           }}/>
-      <Tab.Screen name="Completed" component={Completed} options={{
+      <Tab.Screen name="Completed" component={Completed} 
+      options={{
             tabBarLabel: 'Completed',
              
           }}/>

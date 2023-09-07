@@ -16,7 +16,7 @@ import Notification from './Components/Notification';
 import Confirm from './Components/Confirm';
 import Profile from './Components/Profile';
 import Signup from './Components/Signup';
-import Api from './Components/Api';
+
 
 
 const Stack = createStackNavigator();
@@ -42,6 +42,8 @@ function App() {
         </Stack.Navigator>
       
       </NavigationContainer>
+      
+     
      
       <StatusBar style="auto" />
     </View>

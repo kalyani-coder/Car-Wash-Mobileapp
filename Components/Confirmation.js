@@ -70,10 +70,14 @@ class Confirmation extends React.Component {
   handleIconPressHome = () => {
     this.props.navigation.navigate('Home'); // Navigate to the home screen
   };
-  //for washing itself page
-  handleIconPressBooking = () => {
-    this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
-  };
+ //for services
+ handleIconPressService = () => {
+  this.props.navigation.navigate('Washing'); // Navigate to the Washing screen
+};
+//for Booking
+handleIconPressBooking = () => {
+  this.props.navigation.navigate('Appointment'); // Navigate to the Appointment screen
+};
   //inbox page
   handleIconPressInbox = () => {
     this.props.navigation.navigate('Confirmation'); // Navigate to the Confirmation page screen
@@ -93,161 +97,161 @@ class Confirmation extends React.Component {
     const { selectedTime, isDatePickerVisible } = this.state;
     return (
       <>
-       <ScrollView
-                        Vertical={true}
-                        showsVerticalScrollIndicator={false}
-                    >
+        <ScrollView
+          Vertical={true}
+          showsVerticalScrollIndicator={false}
+        >
 
-        <View style={styles.container}>
-          {/* <Text style={styles.text}>Confirmation</Text> */}
-          <View
-            style={{
-              height: 65,
-              width: 370,
-              backgroundColor: "#F2F3F4",
-              marginVertical: 10,
-            }}
-          >
+          <View style={styles.container}>
+            {/* <Text style={styles.text}>Confirmation</Text> */}
             <View
               style={{
-                flexDirection: "row",
-                alignItems: "center",
-                margin:10,
-                justifyContent:'space-between'
+                height: 65,
+                width: 370,
+                backgroundColor: "#F2F3F4",
+                marginVertical: 10,
               }}
             >
-              <MaterialCommunityIcons name="car-wash" size={35} color="black" />
-
-              <Text>Service</Text>
-              <Text>1500</Text>
-            </View>
-          </View>
-          <View
-            style={{
-              height: 65,
-              width: 370,
-              backgroundColor: "#F2F3F4",
-              marginVertical: 10,
-            }}
-          >
-            <View style={{ flexDirection: 'row',margin:10 }}>
-              <TouchableOpacity
-                onPress={() => this.setState({ showPicker: true })}
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  margin: 10,
+                  justifyContent: 'space-between'
+                }}
               >
-                <AntDesign name="calendar" size={35} color="black"/>
-              </TouchableOpacity>
-              <View style={{marginLeft:15}}>
-              <Text> Date & Time</Text>
+                <MaterialCommunityIcons name="car-wash" size={35} color="black" />
 
-            <View style={styles.date1}>
-
-              <TouchableOpacity onPress={this.showDatePicker}>
-                <EvilIcons name="clock" size={22} color="black" />
-              </TouchableOpacity>
-
-              {selectedTime && (
-                <Text>{(this.formatTime(selectedTime)) || "8:30"}</Text>
-              )}
-              
-              <DateTimePickerModal
-                isVisible={isDatePickerVisible}
-                mode="time"
-                onConfirm={this.handleDateConfirm}
-                onCancel={this.hideDatePicker}
-              />
-              <Text>  |  </Text>
-              {showPicker && (
-                <DateTimePicker
-                  value={selectedDate}
-                  mode="date"
-                  display="default"
-                  onChange={this.handleDateChange}
-                />
-              )}
-              {selectedDate && (
-                <Text> {selectedDate.toLocaleDateString()}</Text>
-              )}
-              </View>
+                <Text>Service</Text>
+                <Text>1500</Text>
               </View>
             </View>
-          </View>
-          <View
-            style={{
-              height: 65,
-              width: 370,
-              backgroundColor: "#F2F3F4",
-              
-              marginVertical: 10,
-            }}
-          >
-            <View style={{flexDirection:'row'}}>
-            <AntDesign name="exclamationcircle" size={30} color="black" margin={10}/>
-            <View style={{marginLeft:10,marginTop:5}}>
-            <Text>Note</Text>
-            <Text>Ipsum Velt ut null null temp</Text>
+            <View
+              style={{
+                height: 65,
+                width: 370,
+                backgroundColor: "#F2F3F4",
+                marginVertical: 10,
+              }}
+            >
+              <View style={{ flexDirection: 'row', margin: 10 }}>
+                <TouchableOpacity
+                  onPress={() => this.setState({ showPicker: true })}
+                >
+                  <AntDesign name="calendar" size={35} color="black" />
+                </TouchableOpacity>
+                <View style={{ marginLeft: 15 }}>
+                  <Text> Date & Time</Text>
+
+                  <View style={styles.date1}>
+
+                    <TouchableOpacity onPress={this.showDatePicker}>
+                      <EvilIcons name="clock" size={22} color="black" />
+                    </TouchableOpacity>
+
+                    {selectedTime && (
+                      <Text>{(this.formatTime(selectedTime)) || "8:30"}</Text>
+                    )}
+
+                    <DateTimePickerModal
+                      isVisible={isDatePickerVisible}
+                      mode="time"
+                      onConfirm={this.handleDateConfirm}
+                      onCancel={this.hideDatePicker}
+                    />
+                    <Text>  |  </Text>
+                    {showPicker && (
+                      <DateTimePicker
+                        value={selectedDate}
+                        mode="date"
+                        display="default"
+                        onChange={this.handleDateChange}
+                      />
+                    )}
+                    {selectedDate && (
+                      <Text> {selectedDate.toLocaleDateString()}</Text>
+                    )}
+                  </View>
+                </View>
+              </View>
             </View>
+            <View
+              style={{
+                height: 65,
+                width: 370,
+                backgroundColor: "#F2F3F4",
+
+                marginVertical: 10,
+              }}
+            >
+              <View style={{ flexDirection: 'row' }}>
+                <AntDesign name="exclamationcircle" size={30} color="black" margin={10} />
+                <View style={{ marginLeft: 10, marginTop: 5 }}>
+                  <Text>Note</Text>
+                  <Text>Ipsum Velt ut null null temp</Text>
+                </View>
+              </View>
             </View>
-          </View>
-          <Text>Select Pickup</Text>
-          <View
-            style={{
-              height: 70,
-              width: 370,
-              backgroundColor: "#F2F3F4",
-              marginVertical: 10,
-            }}
-          >
-            <View style={{flexDirection:'row',justifyContent:'space-between',margin:10}}>
-              <View>
-            <Text>Pickup address</Text>
-            <Text>PIN Text Address</Text>
+            <Text>Select Pickup</Text>
+            <View
+              style={{
+                height: 70,
+                width: 370,
+                backgroundColor: "#F2F3F4",
+                marginVertical: 10,
+              }}
+            >
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10 }}>
+                <View>
+                  <Text>Pickup address</Text>
+                  <Text>PIN Text Address</Text>
+                </View>
+                <MaterialCommunityIcons name="greater-than" size={24} color="black" paddingTop={10} />
+              </View>
+
             </View>
-            <MaterialCommunityIcons name="greater-than" size={24} color="black" paddingTop={10}/>
+            <Text>Voucher</Text>
+            <View style={styles.voucher1}>
+              <TextInput
+                style={styles.text1}
+                placeholder="Enter Voucher Code"
+              ></TextInput>
+              <TouchableOpacity style={styles.apply}>
+                <Text style={{ textAlign: "center", margin: 10 }}>Apply</Text>
+              </TouchableOpacity>
             </View>
-            
-          </View>
-          <Text>Voucher</Text>
-          <View style={styles.voucher1}>
-            <TextInput
-              style={styles.text1}
-              placeholder="Enter Voucher Code"
-            ></TextInput>
-            <TouchableOpacity style={styles.apply}>
-              <Text style={{ textAlign: "center", margin: 10 }}>Apply</Text>
-            </TouchableOpacity>
+
+            <View style={styles.amount}>
+              <Text style={styles.text2}>TOTAL</Text>
+              <Text style={styles.text2}>1500</Text>
+            </View>
+            <View style={styles.amount}>
+              <Text style={styles.text2}>PICK UP</Text>
+              <Text style={styles.text2}>300</Text>
+            </View>
+            <View style={styles.amount}>
+              <Text style={styles.text2}>TAXES</Text>
+              <Text style={styles.text2}>150</Text>
+            </View>
+            <View style={styles.amount}>
+              <Text style={styles.text2}>TOTAL PAYABLE AMOUNT</Text>
+              <Text style={styles.text2}>1950</Text>
+            </View>
+            <View style={styles.amount}>
+              <Text style={styles.text2}>TOTAL PAYABLE </Text>
+              <Text style={styles.text2}>1950</Text>
+            </View>
           </View>
 
-          <View style={styles.amount}>
-            <Text style={styles.text2}>TOTAL</Text>
-            <Text style={styles.text2}>1500</Text>
-          </View>
-          <View style={styles.amount}>
-            <Text style={styles.text2}>PICK UP</Text>
-            <Text style={styles.text2}>300</Text>
-          </View>
-          <View style={styles.amount}>
-            <Text style={styles.text2}>TAXES</Text>
-            <Text style={styles.text2}>150</Text>
-          </View>
-          <View style={styles.amount}>
-            <Text style={styles.text2}>TOTAL PAYABLE AMOUNT</Text>
-            <Text style={styles.text2}>1950</Text>
-          </View>
-          <View style={styles.amount}>
-            <Text style={styles.text2}>TOTAL PAYABLE </Text>
-            <Text style={styles.text2}>1950</Text>
-          </View>
-          </View>
-
-          </ScrollView>
-          <View style={styles.container}>
+        </ScrollView>
+        <View style={styles.container}>
 
           <TouchableOpacity style={styles.button} onPress={this.handleIconPressConfirm}>
             <Text style={styles.buttonText}>Confirm Booking</Text>
           </TouchableOpacity>
-           </View>
+        </View>
 
-           <View style={styles.footer}>
+        <View style={styles.footer}>
 
           <View style={styles.iconsContainer1}>
             <View style={styles.text9}>
@@ -287,16 +291,14 @@ class Confirmation extends React.Component {
               <Text style={styles.text10}>Setting</Text>
             </View>
           </View>
-          </View>
-       
+        </View>
+
       </>
     );
   }
 }
 const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 15,
-  },
+ 
   text: {
     fontSize: 15,
     fontWeight: "bold",
@@ -311,7 +313,7 @@ const styles = StyleSheet.create({
   },
   date1: {
     flexDirection: 'row',
-    
+
   },
   voucher1: {
     flexDirection: "row",
@@ -335,12 +337,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 13,
   },
+  container: {
+    marginHorizontal: 15,
+  },
   button: {
     backgroundColor: "#5B7586",
     height: 50,
     width: 370,
     paddingTop: 10,
-
     marginTop: 15,
     borderRadius: 2,
   },
@@ -351,41 +355,26 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 4,
   },
-  // iconsContainer1: {
-  //   flexDirection: "row",
-  //   justifyContent: "center",
-  //   marginVertical: 20,
-  // },
-  // icon4: {
-  //   marginHorizontal: 20,
-  // },
-  // text9: {
-  //   justifyContent: "space-between",
-  //   alignItems: "center",
-  // },
-  // text10: {
-  //   fontSize: 10,
-  // },
-  footer:{
+  footer: {
     position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,
     padding: 5,
     alignItems: 'center',
-},
+  },
 
-iconsContainer1: {
-    flexDirection: 'row', 
-},
-icon4: {
+  iconsContainer1: {
+    flexDirection: 'row',
+  },
+  icon4: {
     marginHorizontal: 20,
-},
-text9: {
+  },
+  text9: {
     alignItems: 'center',
-},
-text10: {
+  },
+  text10: {
     fontSize: 10,
-}
+  }
 });
 export default Confirmation;
