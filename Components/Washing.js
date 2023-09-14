@@ -202,7 +202,7 @@ class Washing extends React.Component {
                     <View style={{ height: 50, width: 360, backgroundColor: '#F2F3F4', marginHorizontal: 20 }}>
                         <View style={styles.gloss}>
                             <TouchableOpacity onPress={this.openMapLink}>
-                                <FontAwesome name="map-marker" size={35} color="black" marginBottom={5}/>
+                                <FontAwesome name="map-marker" size={35} color="black" marginBottom={5} />
                             </TouchableOpacity>
                             <Text style={{ fontSize: 15 }}>Amanora Park Town 1284 ABC Address</Text>
                             <TouchableOpacity onPress={this.openMapLink}>
@@ -216,7 +216,7 @@ class Washing extends React.Component {
                         <View style={styles.date}>
                             <Text style={styles.datetext}>{formattedDate}</Text>
                         </View>
-                        <View style={styles.date}>
+                        {/* <View style={styles.date}>
                             <Text style={styles.datetext}>{formattedDate}</Text>
                         </View>
                         <View style={styles.date}>
@@ -233,7 +233,7 @@ class Washing extends React.Component {
                         </View>
                         <View style={styles.date}>
                             <Text style={styles.datetext}>{formattedDate}</Text>
-                        </View>
+                        </View> */}
 
                     </ScrollView>
                     <Text style={{ fontWeight: 'bold', marginHorizontal: 20, fontSize: 15, marginVertical: 5 }}>Choose time</Text>
@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "bold",
         textAlign: "center",
-        
+
     },
     footer: {
         position: 'fixed',
