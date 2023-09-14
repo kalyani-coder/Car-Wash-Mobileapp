@@ -134,7 +134,7 @@ handleIconPressBooking = () => {
                 marginVertical: 10,
               }}
             >
-              <View style={{ flexDirection: 'row', margin: 10 }}>
+              <View style={{ flexDirection: 'column', margin: 10 }}>
                 <TouchableOpacity
                   onPress={() => this.setState({ showPicker: true })}
                 >
@@ -203,9 +203,14 @@ handleIconPressBooking = () => {
             >
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10 }}>
                 <View>
-                  <Text>Pickup address</Text>
-                  <Text>PIN Text Address</Text>
+                  {/* <Text>Pickup address</Text>
+                  <Text>PIN Text Address</Text> */}
+                   <TextInput
+                style={styles.text1}
+                placeholder="Enter pickup address"
+              ></TextInput>
                 </View>
+                
                 <MaterialCommunityIcons name="greater-than" size={24} color="black" paddingTop={10} />
               </View>
 
