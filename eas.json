@@ -1,0 +1,35 @@
+{
+    "cli": {
+      "version": ">= 5.2.0"
+    },
+    "build": {
+        "test": {
+            "env": {
+              "APP_ICON": "./assets/icon.png",
+              "APP_NAME": "Car Wash"
+            }
+          },
+      "development": {
+        "developmentClient": true,
+        "distribution": "internal"
+      },
+      "preview": {
+        "distribution": "internal",
+        "android": {
+          "buildType": "apk"
+        }
+      },
+      "preview2": {
+        "android": {
+          "gradleCommand": ":app:assembleRelease"
+        }
+      },
+      "preview3": {
+        "developmentClient": true
+      },
+      "production": {}
+    },
+    "submit": {
+      "production": {}
+    }
+  }
